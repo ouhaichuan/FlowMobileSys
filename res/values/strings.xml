@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">统一流程平台</string>
+    <string name="app_display_name">重庆移动统一流程平台</string>
+    <string name="login">登 录</string>
+    <string name="account">输入用户名</string>
+    <string name="password">输入密码</string>
+    <string name="login_prompt">正在验证帐号…</string>
+    <string name="auto_save_password">记住我</string>
+    <string name="forgot_password">忘记密码</string>
+    <string name="sending_request">发送请求中…</string>
+    <string name="findback_pass">找回密码</string>
+    <string name="more_str">更多选项</string>
+    <string name="control_str">操作</string>
+    <string name="userid_str">用户名:</string>
+    <string name="userid_str_warning">请输入用户名</string>
+    <string name="waring_str">提示：我们会将随机生成的密码发到你的注册手机上</string>
+    <string name="find_back_str">找回</string>
+
+</resources>
