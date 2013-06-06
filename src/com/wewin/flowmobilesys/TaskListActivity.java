@@ -141,8 +141,12 @@ public class TaskListActivity extends Activity {
 				// 得到是否已关注标记
 				canSee = ((TextView) view.findViewById(R.id.txt_counts))
 						.getText().toString();
-				tabMenu.showAtLocation(findViewById(R.id.txt_counts),
-						Gravity.TOP, 0, position * 40 + 75);
+
+				int[] positions = new int[2];
+				view.getLocationInWindow(positions);
+
+				tabMenu.showAtLocation(view, Gravity.TOP, positions[0],
+						positions[1]);
 			}
 		}
 	}

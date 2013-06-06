@@ -25,8 +25,8 @@ public class MainActivity extends Activity {
 	private GridView mGridView;// 菜单grid
 	private ButtomMenu buttomMenu;// 底部菜单
 	private int[] imageRes = { R.drawable.tasklist, R.drawable.watch,
-			R.drawable.settings };
-	private String[] itemName = { "我的任务", "我的关注", "可见任务" };
+			R.drawable.settings, R.drawable.datachart };
+	private String[] itemName = { "我的任务", "我的关注", "可见任务", "数据总概" };
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -73,10 +73,24 @@ public class MainActivity extends Activity {
 			case 2:
 				goToCanSeeActivity();
 				break;
+			case 3:
+				goToDataChartActivity();
+				break;
 			default:
 				break;
 			}
 		}
+	}
+
+	/**
+	 * 跳转到chartActivity
+	 * 
+	 * @date 2013-6-7
+	 */
+	public void goToDataChartActivity() {
+		Intent intent = new Intent();
+		intent.setClass(this, DataChartActivity.class);
+		startActivity(intent);
 	}
 
 	/**
@@ -135,6 +149,8 @@ public class MainActivity extends Activity {
 
 			input2 = findViewById(R.id.input2);
 			input2.setOnClickListener(new inputOnClick());
+
+			showBottom(true);// 初始化时，隐藏
 		}
 
 		public class inputOnClick implements OnClickListener {

@@ -14,6 +14,12 @@ import android.widget.PopupWindow;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
 
+/**
+ * µ¯³ö²Ëµ¥PopupWindow
+ * 
+ * @author HCOU
+ * @date 2013-6-6
+ */
 public class TabMenu extends PopupWindow {
 	private GridView gridView;
 	private LinearLayout mLayout;

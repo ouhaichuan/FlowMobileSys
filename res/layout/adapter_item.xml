@@ -9,6 +9,7 @@
         android:id="@+id/classroom_detail_item_tableRow"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
         android:gravity="center" >
 
         <TextView
@@ -19,7 +20,7 @@
             android:height="40dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/window_bg"
-            android:textSize="11sp"
+            android:textSize="13sp"
             android:visibility="gone" >
         </TextView>
 
@@ -31,7 +32,7 @@
             android:height="40dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/window_bg"
-            android:textSize="11sp" >
+            android:textSize="13sp" >
         </TextView>
 
         <TextView
@@ -42,7 +43,7 @@
             android:height="40dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/window_bg"
-            android:textSize="11sp" >
+            android:textSize="13sp" >
         </TextView>
 
         <TextView
@@ -53,7 +54,7 @@
             android:height="40dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/window_bg"
-            android:textSize="11sp" >
+            android:textSize="13sp" >
         </TextView>
 
         <TextView
@@ -64,7 +65,7 @@
             android:height="40dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/window_bg"
-            android:textSize="11sp" >
+            android:textSize="13sp" >
         </TextView>
 
         <TextView
@@ -75,7 +76,7 @@
             android:height="40dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/window_bg"
-            android:textSize="11sp" >
+            android:textSize="13sp" >
         </TextView>
 
         <TextView
@@ -86,7 +87,7 @@
             android:height="40dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:textColor="@color/window_bg"
-            android:textSize="11sp" >
+            android:textSize="13sp" >
         </TextView>
     </TableRow>
 

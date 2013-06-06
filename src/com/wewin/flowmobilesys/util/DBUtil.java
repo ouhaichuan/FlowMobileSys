@@ -53,6 +53,24 @@ public class DBUtil {
 	}
 
 	/**
+	 * 获取统计信息
+	 * 
+	 * @date 2013-6-7
+	 * @param userid
+	 * @return
+	 */
+	public List<String> doFindChartData(String userid) {
+		arrayList.clear();
+		brrayList.clear();
+
+		arrayList.add("userid");
+		brrayList.add(userid);
+
+		crrayList = Soap.GetWebServre("doFindChartData", arrayList, brrayList);
+		return crrayList;
+	}
+
+	/**
 	 * 调用取消关注
 	 * 
 	 * @date 2013-6-5
