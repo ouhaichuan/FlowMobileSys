@@ -17,5 +17,19 @@
     <string name="userid_str_warning">请输入用户名</string>
     <string name="waring_str">提示：我们会将随机生成的密码发到你的注册手机上</string>
     <string name="find_back_str">找回</string>
+    <string name="tasktype_str">任务类型：</string>
+    <string name="response_person_str">责任人：</string>
+    <string name="taskid_str">任务编号：</string>
+    <string name="task_creator_str">任务制定人：</string>
+    <string name="task_yanshou_str">验收人：</string>
+    <string name="task_name_str">任务名称：</string>
+    <string name="task_startdate_str">任务开始日期：</string>
+    <string name="task_enddate_str">任务结束日期：</string>
+    <string name="task_mj_str">任务密级：</string>
+    <string name="task_status_str">任务状态：</string>
+    <string name="task_fenguan_str">分管领导：</string>
+    <string name="task_writedate_str">填报日期：</string>
+    <string name="task_des_str">任务内容描述：</string>
+    <string name="task_counts_str">子任务数：</string>
 
 </resources>

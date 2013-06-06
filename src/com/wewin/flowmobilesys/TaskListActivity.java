@@ -193,6 +193,8 @@ public class TaskListActivity extends Activity {
 			case 0:
 				break;
 			case 1:
+				// 跳转任务详细
+				gotoDetailedActivity();
 				break;
 			case 2:
 				// 现在关注选项窗口
@@ -203,6 +205,20 @@ public class TaskListActivity extends Activity {
 			}
 			tabMenu.dismiss();// 销毁弹出菜单
 		}
+	}
+
+	/**
+	 * 跳转任务详细Activity
+	 * 
+	 * @date 2013-6-6
+	 */
+	public void gotoDetailedActivity() {
+		Intent intent = new Intent();
+		Bundle bundle = new Bundle();
+		bundle.putString("missionId", missionId);// 传送missionId
+		intent.setClass(this, TaskDetailedActivity.class);
+		intent.putExtras(bundle);
+		startActivity(intent);
 	}
 
 	/**

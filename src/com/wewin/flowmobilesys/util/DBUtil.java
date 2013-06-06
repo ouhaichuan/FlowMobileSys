@@ -163,6 +163,26 @@ public class DBUtil {
 	}
 
 	/**
+	 * 获取任务详细信息
+	 * 
+	 * @return
+	 */
+	public List<String> selectDetailedMissionInfo(String missionId) {
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+
+		// 传递用户编号
+		arrayList.add("id");
+		brrayList.add(missionId);
+
+		crrayList = Soap.GetWebServre("selectDetailedMissionInfo", arrayList,
+				brrayList);
+
+		return crrayList;
+	}
+
+	/**
 	 * 获取我的任务的信息
 	 * 
 	 * @return

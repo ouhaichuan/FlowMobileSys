@@ -198,12 +198,13 @@ public final class R {
         public static final int accounts=0x7f070018;
         public static final int auto_save_password=0x7f07001b;
         public static final int classroom_detail_item_tableRow=0x7f07000a;
+        public static final int detailedTitle=0x7f07001f;
         public static final int findback_btn=0x7f070014;
         public static final int hide_login=0x7f070006;
         public static final int image=0x7f070016;
         public static final int input=0x7f070017;
         public static final int input2=0x7f070002;
-        public static final int listView=0x7f070020;
+        public static final int listView=0x7f07002f;
         public static final int login=0x7f07001a;
         public static final int loginpage=0x7f070015;
         public static final int more_bottom=0x7f070001;
@@ -213,7 +214,7 @@ public final class R {
         public static final int password=0x7f070019;
         public static final int regist=0x7f07001c;
         public static final int silence_login=0x7f070007;
-        public static final int taskTitle=0x7f07001f;
+        public static final int taskTitle=0x7f07002e;
         public static final int tvLoad=0x7f070012;
         public static final int txt_Title=0x7f07000d;
         public static final int txt_beginTime=0x7f07000e;
@@ -221,7 +222,21 @@ public final class R {
         public static final int txt_createUserName=0x7f07000c;
         public static final int txt_endTime=0x7f07000f;
         public static final int txt_missionid=0x7f07000b;
+        public static final int txt_response_person=0x7f070021;
         public static final int txt_status=0x7f070010;
+        public static final int txt_task_counts=0x7f07002d;
+        public static final int txt_task_creator=0x7f070023;
+        public static final int txt_task_des=0x7f07002c;
+        public static final int txt_task_enddate=0x7f070027;
+        public static final int txt_task_fenguan=0x7f07002a;
+        public static final int txt_task_mj=0x7f070028;
+        public static final int txt_task_name=0x7f070025;
+        public static final int txt_task_startdate=0x7f070026;
+        public static final int txt_task_status=0x7f070029;
+        public static final int txt_task_writedate=0x7f07002b;
+        public static final int txt_task_yanshou=0x7f070024;
+        public static final int txt_taskid=0x7f070022;
+        public static final int txt_tasktype=0x7f070020;
         public static final int userid=0x7f070013;
     }
     public static final class layout {
@@ -231,8 +246,9 @@ public final class R {
         public static final int forgotpassword=0x7f030003;
         public static final int loginpage=0x7f030004;
         public static final int menuitem=0x7f030005;
-        public static final int tasklist=0x7f030006;
-        public static final int welcome=0x7f030007;
+        public static final int taskdetailed=0x7f030006;
+        public static final int tasklist=0x7f030007;
+        public static final int welcome=0x7f030008;
     }
     public static final class string {
         public static final int account=0x7f050003;
@@ -247,7 +263,21 @@ public final class R {
         public static final int login_prompt=0x7f050005;
         public static final int more_str=0x7f05000a;
         public static final int password=0x7f050004;
+        public static final int response_person_str=0x7f050011;
         public static final int sending_request=0x7f050008;
+        public static final int task_counts_str=0x7f05001d;
+        public static final int task_creator_str=0x7f050013;
+        public static final int task_des_str=0x7f05001c;
+        public static final int task_enddate_str=0x7f050017;
+        public static final int task_fenguan_str=0x7f05001a;
+        public static final int task_mj_str=0x7f050018;
+        public static final int task_name_str=0x7f050015;
+        public static final int task_startdate_str=0x7f050016;
+        public static final int task_status_str=0x7f050019;
+        public static final int task_writedate_str=0x7f05001b;
+        public static final int task_yanshou_str=0x7f050014;
+        public static final int taskid_str=0x7f050012;
+        public static final int tasktype_str=0x7f050010;
         public static final int userid_str=0x7f05000c;
         public static final int userid_str_warning=0x7f05000d;
         public static final int waring_str=0x7f05000e;

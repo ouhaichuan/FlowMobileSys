@@ -41,6 +41,11 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateVisible" >
         </activity>
+        <activity
+            android:name=".TaskDetailedActivity"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateVisible" >
+        </activity>
     </application>
 
 </manifest>
