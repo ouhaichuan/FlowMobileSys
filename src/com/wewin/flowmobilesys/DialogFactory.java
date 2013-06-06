@@ -16,7 +16,6 @@ import android.widget.TextView;
 public class DialogFactory {
 
 	public static Dialog creatRequestDialog(final Context context, String tip) {
-
 		final Dialog dialog = new Dialog(context, R.style.dialog);
 		dialog.setContentView(R.layout.dialog_layout);
 		Window window = dialog.getWindow();

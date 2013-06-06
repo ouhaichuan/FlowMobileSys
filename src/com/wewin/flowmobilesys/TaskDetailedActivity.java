@@ -10,10 +10,10 @@ import android.os.Handler;
 import android.widget.TextView;
 
 /**
- * 任务显示Activity
+ * 任务详细Acitivity
  * 
  * @author HCOU
- * @date 2013-6-5
+ * @date 2013-6-6
  */
 public class TaskDetailedActivity extends Activity {
 	private TextView detailedTitle;
@@ -35,6 +35,11 @@ public class TaskDetailedActivity extends Activity {
 		initView();
 	}
 
+	/**
+	 * 初始化界面
+	 * 
+	 * @date 2013-6-6
+	 */
 	private void initView() {
 		Intent intent = getIntent();
 		missionId = intent.getStringExtra("missionId");
@@ -74,6 +79,7 @@ public class TaskDetailedActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				// 访问webservice获取数据
 				list = dbUtil.selectDetailedMissionInfo(missionId);
 				// 更新界面
 				updateView();
@@ -83,6 +89,11 @@ public class TaskDetailedActivity extends Activity {
 		}).start();
 	}
 
+	/**
+	 * 更新视图
+	 * 
+	 * @date 2013-6-6
+	 */
 	public void updateView() {
 		handler.post(new Runnable() {
 			@Override
