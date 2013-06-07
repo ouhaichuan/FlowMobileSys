@@ -19,10 +19,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
- * ÈÎÎñÏêÏ¸Acitivity
+ * chartPie Activity
  * 
  * @author HCOU
- * @date 2013-6-6
+ * @date 2013-6-7
  */
 public class DataChartActivity extends Activity {
 	private TextView dataChartTitle;

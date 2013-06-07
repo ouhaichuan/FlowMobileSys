@@ -196,6 +196,9 @@ public class LoginActivity extends Activity implements OnClickListener {
 			return true;
 	}
 
+	/**
+	 * 添加返回菜单，退出按钮
+	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK
