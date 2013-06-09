@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout.LayoutParams;
+import android.widget.TextView;
 
 /**
  * 弹出菜单PopupWindow
@@ -74,6 +75,7 @@ public class TabMenu extends PopupWindow {
 	static public class MenuBodyAdapter extends BaseAdapter {
 		private Context mContext;
 		private int[] resID;
+		private String[] strs;
 
 		/**
 		 * 设置TabMenu的分页主体
@@ -82,9 +84,10 @@ public class TabMenu extends PopupWindow {
 		 *            调用方的上下文
 		 * @param resID
 		 */
-		public MenuBodyAdapter(Context context, int[] resID) {
+		public MenuBodyAdapter(Context context, int[] resID, String[] strs) {
 			this.mContext = context;
 			this.resID = resID;
+			this.strs = strs;
 		}
 
 		@Override
@@ -110,7 +113,15 @@ public class TabMenu extends PopupWindow {
 			ImageView img = new ImageView(this.mContext);
 			img.setBackgroundResource(resID[position]);
 			result.addView(img, new LinearLayout.LayoutParams(new LayoutParams(
-					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)));
+					LayoutParams.WRAP_CONTENT, 68)));
+
+			TextView textView = new TextView(this.mContext);
+			textView.setText(strs[position]);
+			textView.setTextColor(Color.WHITE);
+			textView.setTextSize(12);
+			textView.setGravity(Gravity.CENTER);
+			result.addView(textView);
+
 			return result;
 		}
 

@@ -1,12 +1,19 @@
 package com.wewin.flowmobilesys;
 
 import java.util.List;
+import com.wewin.flowmobilesys.menu.ActionItem;
+import com.wewin.flowmobilesys.menu.TitlePopup;
 import com.wewin.flowmobilesys.util.DBUtil;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.TextView;
 
 /**
@@ -18,10 +25,14 @@ import android.widget.TextView;
 public class TaskDetailedActivity extends Activity {
 	private TextView detailedTitle;
 	private String missionId;
+	private int taskFlag;// 1,我的关注，2我的任务，3可见任务
 	private DBUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler;
 	private List<String> list;
+	private Button control_btn;
+	private TitlePopup titlePopup;
+
 	private TextView txt_tasktype, txt_response_person, txt_taskid,
 			txt_task_creator, txt_task_yanshou, txt_task_name,
 			txt_task_startdate, txt_task_enddate, txt_task_mj, txt_task_status,
@@ -43,10 +54,14 @@ public class TaskDetailedActivity extends Activity {
 	private void initView() {
 		Intent intent = getIntent();
 		missionId = intent.getStringExtra("missionId");
+		taskFlag = intent.getIntExtra("taskFlag", 0);
+
 		dbUtil = new DBUtil();
 		handler = new Handler();
 		detailedTitle = (TextView) findViewById(R.id.detailedTitle);
-		detailedTitle.setText("任务详细");// 设置标题栏
+		detailedTitle.setText("任务明细");// 设置标题栏
+		control_btn = (Button) findViewById(R.id.control_btn);// 标题栏菜单按钮
+		control_btn.setOnClickListener(new TitleButtnOnclickLisenter());
 
 		txt_tasktype = (TextView) findViewById(R.id.txt_tasktype);
 		txt_response_person = (TextView) findViewById(R.id.txt_response_person);
@@ -63,8 +78,70 @@ public class TaskDetailedActivity extends Activity {
 		txt_task_des = (TextView) findViewById(R.id.txt_task_des);
 		txt_task_counts = (TextView) findViewById(R.id.txt_task_counts);
 
-		setViewData();
+		initTitleMenu();// 初始化顶部菜单
+		setViewData();// 查询页面要显示的数据
 	}
+
+	/**
+	 * 初始化底部菜单
+	 * 
+	 * @date 2013-6-8
+	 */
+	private void initTitleMenu() {
+		titlePopup = new TitlePopup(this, new TitleItemOnclickLisenter(),
+				LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+		titlePopup.update();
+		switch (taskFlag) {
+		case 1:// 我的关注
+			titlePopup.addAction(new ActionItem(this, "取消关注",
+					R.drawable.cancelwatch_mini_2));
+			break;
+		case 2:// 我的任务
+			titlePopup.addAction(new ActionItem(this, "删除任务",
+					R.drawable.recycle_mini_2));
+			break;
+		case 3:// 可见任务
+			titlePopup.addAction(new ActionItem(this, "关注",
+					R.drawable.watch_mini_2));
+			break;
+		default:
+			break;
+		}
+		titlePopup.addAction(new ActionItem(this, "导出",
+				R.drawable.export_mini_2));
+		titlePopup
+				.addAction(new ActionItem(this, "下一条", R.drawable.next_mini_2));
+		titlePopup.addAction(new ActionItem(this, "上一条",
+				R.drawable.return_mini_2));
+	}
+
+	/**
+	 * 顶部菜单点击事件类
+	 * 
+	 * @author HCOU
+	 * @date 2013-6-8
+	 */
+	class TitleButtnOnclickLisenter implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			titlePopup.show(v);
+		}
+	};
+
+	/**
+	 * 顶部菜单项点击事件
+	 * 
+	 * @author HCOU
+	 * @date 2013-6-9
+	 */
+	class TitleItemOnclickLisenter implements OnItemClickListener {
+		public void onItemClick(android.widget.AdapterView<?> arg0, View arg1,
+				int arg2, long arg3) {
+			System.out.println(arg2);
+
+			titlePopup.dismiss();
+		}
+	};
 
 	/**
 	 * 设置listView

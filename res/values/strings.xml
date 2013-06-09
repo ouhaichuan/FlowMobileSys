@@ -31,5 +31,10 @@
     <string name="task_writedate_str">填报日期：</string>
     <string name="task_des_str">任务内容描述：</string>
     <string name="task_counts_str">子任务数：</string>
-
+    <string name="export_btn_str">导出</string>
+	<string name="title_str1">创建人</string>
+	<string name="title_str2">标题</string>
+	<string name="title_str3">状态</string>
+	<string name="title_str4">完成度</string>
+	<string name="title_str5">操作</string>
 </resources>

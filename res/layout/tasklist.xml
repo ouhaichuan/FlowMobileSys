@@ -25,6 +25,75 @@
         android:background="@drawable/splash"
         android:orientation="vertical" >
 
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:gravity="left"
+                android:height="37dp"
+                android:text="@string/title_str1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/window_bg"
+                android:textSize="17sp" >
+            </TextView>
+
+            <TextView
+                android:layout_width="110dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:height="37dp"
+                android:text="@string/title_str2"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/window_bg"
+                android:textSize="17sp" >
+            </TextView>
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:height="37dp"
+                android:text="@string/title_str3"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/window_bg"
+                android:textSize="17sp" >
+            </TextView>
+
+            <TextView
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:height="37dp"
+                android:text="@string/title_str4"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/window_bg"
+                android:textSize="17sp" >
+            </TextView>
+
+            <TextView
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:height="37dp"
+                android:text="@string/title_str5"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@color/window_bg"
+                android:textSize="17sp" >
+            </TextView>
+        </LinearLayout>
+
+        <View
+            android:layout_width="fill_parent"
+            android:layout_height="1.0px"
+            android:layout_marginLeft="1.0px"
+            android:layout_marginRight="1.0px"
+            android:background="@color/black" />
+
         <ListView
             android:id="@+id/listView"
             android:layout_width="fill_parent"

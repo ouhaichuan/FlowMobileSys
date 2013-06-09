@@ -70,16 +70,18 @@ public class TaskListActivity extends Activity {
 		switch (taskFlag) {
 		case 1:
 			bodyAdapter = new TabMenu.MenuBodyAdapter(this, new int[] {
-					R.drawable.menu1, R.drawable.menu2,
-					R.drawable.cancelwatch_mini });
+					R.drawable.menu2, R.drawable.cancelwatch_mini },
+					new String[] { "任务明细", "取消关注" });
 			break;
 		case 2:
 			bodyAdapter = new TabMenu.MenuBodyAdapter(this, new int[] {
-					R.drawable.menu1, R.drawable.menu2, R.drawable.recycle });
+					R.drawable.menu2, R.drawable.recycle }, new String[] {
+					"任务明细", "删除任务" });
 			break;
 		case 3:
 			bodyAdapter = new TabMenu.MenuBodyAdapter(this, new int[] {
-					R.drawable.menu1, R.drawable.menu2, R.drawable.watch_mini });
+					R.drawable.menu2, R.drawable.watch_mini }, new String[] {
+					"任务明细", "关注任务" });
 			break;
 		}
 
@@ -134,20 +136,18 @@ public class TaskListActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			if (position != 0) {
-				// 得到任务ID
-				missionId = ((TextView) view.findViewById(R.id.txt_missionid))
-						.getText().toString();
-				// 得到是否已关注标记
-				canSee = ((TextView) view.findViewById(R.id.txt_counts))
-						.getText().toString();
+			// 得到任务ID
+			missionId = ((TextView) view.findViewById(R.id.txt_missionid))
+					.getText().toString();
+			// 得到是否已关注标记
+			canSee = ((TextView) view.findViewById(R.id.txt_counts)).getText()
+					.toString();
 
-				int[] positions = new int[2];
-				view.getLocationInWindow(positions);
+			int[] positions = new int[2];
+			view.getLocationInWindow(positions);
 
-				tabMenu.showAtLocation(view, Gravity.TOP, positions[0],
-						positions[1]);
-			}
+			tabMenu.showAtLocation(view, Gravity.TOP, positions[0],
+					positions[1]);
 		}
 	}
 
@@ -167,6 +167,7 @@ public class TaskListActivity extends Activity {
 								R.id.txt_endTime, R.id.txt_status,
 								R.id.txt_counts });
 				listView.setAdapter(adapter);
+
 				switch (taskFlag) {
 				case 1:
 					taskTitle.setText("我的关注");
@@ -195,12 +196,10 @@ public class TaskListActivity extends Activity {
 			tabMenu.SetBodySelect(position, Color.GRAY);// 设置选中状态
 			switch (position) {
 			case 0:
-				break;
-			case 1:
 				// 跳转任务详细
 				gotoDetailedActivity();
 				break;
-			case 2:
+			case 1:
 				// 现在关注选项窗口
 				checkWitchWindow();
 				break;
@@ -220,6 +219,7 @@ public class TaskListActivity extends Activity {
 		Intent intent = new Intent();
 		Bundle bundle = new Bundle();
 		bundle.putString("missionId", missionId);// 传送missionId
+		bundle.putInt("taskFlag", taskFlag);// 传送菜单标签
 		intent.setClass(this, TaskDetailedActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);

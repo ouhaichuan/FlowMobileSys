@@ -148,17 +148,6 @@ public class DBUtil {
 
 		crrayList = Soap.GetWebServre("selectWatchMissionInfo", arrayList,
 				brrayList);
-
-		HashMap<String, String> tempHash = new HashMap<String, String>();
-		tempHash.put("missionId", "任务编号");
-		tempHash.put("createUserName", "创建人");
-		tempHash.put("Title", "标题");
-		tempHash.put("beginTime", "开始时间");
-		tempHash.put("endTime", "结束时间");
-		tempHash.put("status", "状态");
-		tempHash.put("counts", "完成度");
-		list.add(tempHash);
-
 		for (int j = 0; j < crrayList.size(); j += 7) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
 			hashMap.put("missionId", crrayList.get(j));
@@ -219,16 +208,6 @@ public class DBUtil {
 		crrayList = Soap.GetWebServre("selectMyMissionInfo", arrayList,
 				brrayList);
 
-		HashMap<String, String> tempHash = new HashMap<String, String>();
-		tempHash.put("missionId", "任务编号");
-		tempHash.put("createUserName", "创建人");
-		tempHash.put("Title", "标题");
-		tempHash.put("beginTime", "开始时间");
-		tempHash.put("endTime", "结束时间");
-		tempHash.put("status", "状态");
-		tempHash.put("counts", "完成度");
-		list.add(tempHash);
-
 		for (int j = 0; j < crrayList.size(); j += 7) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
 			hashMap.put("missionId", crrayList.get(j));
@@ -268,16 +247,6 @@ public class DBUtil {
 
 		crrayList = Soap.GetWebServre("selectCanSeeMissionInfo", arrayList,
 				brrayList);
-
-		HashMap<String, String> tempHash = new HashMap<String, String>();
-		tempHash.put("missionId", "任务编号");
-		tempHash.put("createUserName", "创建人");
-		tempHash.put("Title", "标题");
-		tempHash.put("beginTime", "开始时间");
-		tempHash.put("endTime", "结束时间");
-		tempHash.put("status", "状态");
-		tempHash.put("counts", "关注");
-		list.add(tempHash);
 
 		for (int j = 0; j < crrayList.size(); j += 7) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
