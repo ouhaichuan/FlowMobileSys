@@ -23,9 +23,9 @@ public class HttpConnSoap {
 		// 2364是指端口号，即挂载到IIS上的时候开启的端口
 		// DbService.asmx是指提供服务的页面
 		// 测试地址
-		String ServerUrl = "http://www.wewin.com.cn:2364/DbService.asmx";
+		// String ServerUrl = "http://www.wewin.com.cn:2364/DbService.asmx";
 		// 外网地址
-		// String ServerUrl = "http://10.0.2.2:2364/DbService.asmx";
+		String ServerUrl = "http://10.0.2.2:2364/DbService.asmx";
 
 		// String soapAction="http://tempuri.org/LongUserId1";
 		String soapAction = "http://tempuri.org/" + methodName;
@@ -102,7 +102,6 @@ public class HttpConnSoap {
 			k = TS.lastIndexOf(ifString);
 
 			if (j >= 0) {
-				System.out.println(j);
 				if (getValueBoolean == false) {
 					getValueBoolean = true;
 				} else {
@@ -110,7 +109,6 @@ public class HttpConnSoap {
 				}
 
 				if ((j >= 0) && (k > j)) {
-					System.out.println("FFF" + TS.lastIndexOf("/" + ifString));
 					l = ifString.length() + 1;
 					vs = TS.substring(j + l, k - 2);
 					Values.add(vs);

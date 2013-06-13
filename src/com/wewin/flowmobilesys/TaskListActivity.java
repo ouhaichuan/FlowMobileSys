@@ -136,7 +136,7 @@ public class TaskListActivity extends Activity {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			// 得到任务ID
+			// 得到当前任务ID
 			missionId = ((TextView) view.findViewById(R.id.txt_missionid))
 					.getText().toString();
 			// 得到是否已关注标记
@@ -220,6 +220,7 @@ public class TaskListActivity extends Activity {
 		Bundle bundle = new Bundle();
 		bundle.putString("missionId", missionId);// 传送missionId
 		bundle.putInt("taskFlag", taskFlag);// 传送菜单标签
+		bundle.putString("canSee", canSee);// 传送是否已关注标记
 		intent.setClass(this, TaskDetailedActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);

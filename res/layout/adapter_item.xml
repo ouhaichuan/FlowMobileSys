@@ -25,9 +25,9 @@
 
         <TextView
             android:id="@+id/txt_createUserName"
-            android:layout_width="60dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:layout_weight="1"
             android:gravity="left"
             android:height="37dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -37,8 +37,8 @@
 
         <TextView
             android:id="@+id/txt_Title"
-            android:layout_width="110dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:height="37dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -74,6 +74,7 @@
             android:id="@+id/txt_status"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:height="37dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -85,6 +86,7 @@
             android:id="@+id/txt_counts"
             android:layout_width="60dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:height="37dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -96,6 +98,7 @@
             android:id="@+id/cotrol_imge"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:gravity="center"
             android:height="37dp"
             android:src="@drawable/touch" />

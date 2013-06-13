@@ -25,15 +25,15 @@
         android:background="@drawable/splash"
         android:orientation="vertical" >
 
-        <LinearLayout
+        <TableRow
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal" >
+            android:layout_marginTop="5dp" >
 
             <TextView
-                android:layout_width="60dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
+                android:layout_weight="1"
                 android:gravity="left"
                 android:height="37dp"
                 android:text="@string/title_str1"
@@ -43,8 +43,8 @@
             </TextView>
 
             <TextView
-                android:layout_width="110dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:height="37dp"
                 android:text="@string/title_str2"
@@ -54,8 +54,8 @@
             </TextView>
 
             <TextView
-                android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:height="37dp"
                 android:text="@string/title_str3"
@@ -65,8 +65,8 @@
             </TextView>
 
             <TextView
-                android:layout_width="60dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
                 android:height="37dp"
                 android:text="@string/title_str4"
@@ -76,16 +76,16 @@
             </TextView>
 
             <TextView
-                android:layout_width="50dp"
                 android:layout_height="wrap_content"
-                android:gravity="right"
+                android:layout_weight="1"
+                android:gravity="center"
                 android:height="37dp"
                 android:text="@string/title_str5"
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:textColor="@color/window_bg"
                 android:textSize="17sp" >
             </TextView>
-        </LinearLayout>
+        </TableRow>
 
         <View
             android:layout_width="fill_parent"

@@ -113,14 +113,16 @@ public class TabMenu extends PopupWindow {
 			ImageView img = new ImageView(this.mContext);
 			img.setBackgroundResource(resID[position]);
 			result.addView(img, new LinearLayout.LayoutParams(new LayoutParams(
-					LayoutParams.WRAP_CONTENT, 68)));
+					LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)));
 
 			TextView textView = new TextView(this.mContext);
 			textView.setText(strs[position]);
 			textView.setTextColor(Color.WHITE);
 			textView.setTextSize(12);
 			textView.setGravity(Gravity.CENTER);
-			result.addView(textView);
+			result.addView(textView, new LinearLayout.LayoutParams(
+					new LayoutParams(LayoutParams.WRAP_CONTENT,
+							LayoutParams.WRAP_CONTENT)));
 
 			return result;
 		}

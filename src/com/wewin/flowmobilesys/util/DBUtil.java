@@ -170,21 +170,73 @@ public class DBUtil {
 	}
 
 	/**
-	 * 获取任务详细信息
+	 * 获取我的任务中任务详细信息
 	 * 
 	 * @return
 	 */
-	public List<String> selectDetailedMissionInfo(String missionId) {
+	public List<String> selectMyMissionDetailedInfo(String missionId,
+			String userid) {
 		arrayList.clear();
 		brrayList.clear();
 		crrayList.clear();
 
-		// 传递用户编号
+		// 传递任务编号
 		arrayList.add("id");
 		brrayList.add(missionId);
+		// 传递用户编号
+		arrayList.add("userid");
+		brrayList.add(userid);
 
-		crrayList = Soap.GetWebServre("selectDetailedMissionInfo", arrayList,
+		crrayList = Soap.GetWebServre("selectMyMissionDetailedInfo", arrayList,
 				brrayList);
+
+		return crrayList;
+	}
+
+	/**
+	 * 获取任务详细信息
+	 * 
+	 * @return
+	 */
+	public List<String> selectWatchMissionDetailedInfo(String missionId,
+			String userid) {
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+
+		// 传递任务编号
+		arrayList.add("id");
+		brrayList.add(missionId);
+		// 传递用户编号
+		arrayList.add("userid");
+		brrayList.add(userid);
+
+		crrayList = Soap.GetWebServre("selectWatchMissionDetailedInfo",
+				arrayList, brrayList);
+
+		return crrayList;
+	}
+
+	/**
+	 * 获取任务详细信息
+	 * 
+	 * @return
+	 */
+	public List<String> selectCanSeeMissionDetailedInfo(String missionId,
+			String userid) {
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+
+		// 传递任务编号
+		arrayList.add("id");
+		brrayList.add(missionId);
+		// 传递用户编号
+		arrayList.add("userid");
+		brrayList.add(userid);
+
+		crrayList = Soap.GetWebServre("selectCanSeeMissionDetailedInfo",
+				arrayList, brrayList);
 
 		return crrayList;
 	}
@@ -224,6 +276,7 @@ public class DBUtil {
 				hashMap.put("status", "完成");
 
 			hashMap.put("counts", crrayList.get(j + 6));
+
 			list.add(hashMap);
 		}
 		return list;
