@@ -6,7 +6,6 @@ import com.wewin.flowmobilesys.menu.ActionItem;
 import com.wewin.flowmobilesys.menu.TitlePopup;
 import com.wewin.flowmobilesys.util.DBUtil;
 import com.wewin.flowmobilesys.util.FileUtil;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -217,21 +216,21 @@ public class TaskDetailedActivity extends Activity {
 	 */
 	public void doExportFileToSdCard() {
 		FileUtil util = new FileUtil();
-		String data = "                    任务明细\n\n"+
-				"    任务类型："+txt_tasktype.getText().toString()+"\n"+
-				"      责任人："+txt_response_person.getText().toString()+"\n"+
-				"    任务编号："+txt_taskid.getText().toString()+"\n"+
-				"  任务制定人："+txt_task_creator.getText().toString()+"\n"+
-				"      验收人："+txt_task_yanshou.getText().toString()+"\n"+
-				"    任务名称："+txt_task_name.getText().toString()+"\n"+
-				"任务开始日期："+txt_task_startdate.getText().toString()+"\n"+
-				"任务结束日期："+txt_task_enddate.getText().toString()+"\n"+
-				"    任务密级："+txt_task_mj.getText().toString()+"\n"+
-				"    任务状态："+txt_task_status.getText().toString()+"\n"+
-				"    分管领导："+txt_task_fenguan.getText().toString()+"\n"+
-				"    填报日期："+txt_task_writedate.getText().toString()+"\n"+
-				"任务内容描述："+txt_task_des.getText().toString()+"\n"+
-				"    子任务数："+txt_task_counts.getText().toString()+"\n";
+		String data = "                    任务明细\n\n" + "    任务类型："
+				+ txt_tasktype.getText().toString() + "\n" + "      责任人："
+				+ txt_response_person.getText().toString() + "\n" + "    任务编号："
+				+ txt_taskid.getText().toString() + "\n" + "  任务制定人："
+				+ txt_task_creator.getText().toString() + "\n" + "      验收人："
+				+ txt_task_yanshou.getText().toString() + "\n" + "    任务名称："
+				+ txt_task_name.getText().toString() + "\n" + "任务开始日期："
+				+ txt_task_startdate.getText().toString() + "\n" + "任务结束日期："
+				+ txt_task_enddate.getText().toString() + "\n" + "    任务密级："
+				+ txt_task_mj.getText().toString() + "\n" + "    任务状态："
+				+ txt_task_status.getText().toString() + "\n" + "    分管领导："
+				+ txt_task_fenguan.getText().toString() + "\n" + "    填报日期："
+				+ txt_task_writedate.getText().toString() + "\n" + "任务内容描述："
+				+ txt_task_des.getText().toString() + "\n" + "    子任务数："
+				+ txt_task_counts.getText().toString() + "\n";
 		util.WriteFile(missionId + userid + ".txt", data);
 	}
 

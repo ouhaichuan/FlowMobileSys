@@ -24,7 +24,7 @@ public class WelcomeActivity extends Activity {
 
 	public void initView() {
 		mHandler = new Handler();
-		// 延迟1秒加载欢迎界面
+		// 延迟2秒加载欢迎界面
 		mHandler.postDelayed(new Runnable() {
 			@Override
 			public void run() {

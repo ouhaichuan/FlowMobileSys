@@ -9,6 +9,12 @@ import android.os.Environment;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
+/**
+ * π§æﬂ¿‡
+ * 
+ * @author HCOU
+ * @date 2013-6-2
+ */
 public class Util {
 	public final static String TAG = Util.class.getSimpleName();
 
