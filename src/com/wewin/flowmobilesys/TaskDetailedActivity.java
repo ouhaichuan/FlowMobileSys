@@ -493,7 +493,11 @@ public class TaskDetailedActivity extends Activity {
 			@Override
 			public void run() {
 				if (list.size() > 0) {
-					txt_tasktype.setText(list.get(0));
+					if (list.get(0).equals("0")) {
+						txt_tasktype.setText("自主式");
+					} else {
+						txt_tasktype.setText("派发式");
+					}
 					txt_response_person.setText(list.get(1).toString());
 					txt_taskid.setText(list.get(2).toString());
 					txt_task_creator.setText(list.get(3).toString());
