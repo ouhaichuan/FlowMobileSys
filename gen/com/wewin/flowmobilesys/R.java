@@ -223,7 +223,6 @@ public final class R {
         public static final int cotrol_imge=0x7f070012;
         public static final int dataChartTitle=0x7f070013;
         public static final int detailedTitle=0x7f070022;
-        public static final int export_btn=0x7f070032;
         public static final int findback_btn=0x7f070017;
         public static final int hide_login=0x7f070006;
         public static final int image=0x7f070019;
@@ -241,6 +240,7 @@ public final class R {
         public static final int silence_login=0x7f070007;
         public static final int taskTitle=0x7f070033;
         public static final int title_list=0x7f070035;
+        public static final int touchlayout=0x7f070032;
         public static final int tvLoad=0x7f070015;
         public static final int txt_Title=0x7f07000d;
         public static final int txt_beginTime=0x7f07000e;

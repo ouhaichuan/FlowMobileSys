@@ -13,11 +13,15 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.GestureDetector.OnGestureListener;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +46,8 @@ public class TaskDetailedActivity extends Activity {
 	private List<String> list;
 	private Button control_btn;
 	private TitlePopup titlePopup;
+	private GestureDetector mGestureDetector;
+	private LinearLayout touchLayout;
 
 	private TextView txt_tasktype, txt_response_person, txt_taskid,
 			txt_task_creator, txt_task_yanshou, txt_task_name,
@@ -68,9 +74,9 @@ public class TaskDetailedActivity extends Activity {
 		missionId = intent.getStringExtra("missionId");
 		taskFlag = intent.getIntExtra("taskFlag", 0);
 		canSee = intent.getStringExtra("canSee");
-
 		dbUtil = new DBUtil();
 		handler = new Handler();
+
 		detailedTitle = (TextView) findViewById(R.id.detailedTitle);
 		detailedTitle.setText("任务明细");// 设置标题栏
 		control_btn = (Button) findViewById(R.id.control_btn);// 标题栏菜单按钮
@@ -91,6 +97,7 @@ public class TaskDetailedActivity extends Activity {
 		txt_task_des = (TextView) findViewById(R.id.txt_task_des);
 		txt_task_counts = (TextView) findViewById(R.id.txt_task_counts);
 
+		initTouchListener();// 绑定触屏滑动事件
 		initTitleMenu();// 初始化顶部菜单
 		setViewData();// 查询页面要显示的数据
 	}
@@ -518,5 +525,40 @@ public class TaskDetailedActivity extends Activity {
 				}
 			}
 		});
+	}
+
+	/**
+	 * 设置触屏事件
+	 * 
+	 * @date 2013-6-14
+	 */
+	public void initTouchListener() {
+		/**
+		 * 设置触屏滑动事件
+		 */
+		mGestureDetector = new GestureDetector(
+				(OnGestureListener) new OnGestureAndTouchAdapter() {
+					@Override
+					public boolean onFling(MotionEvent e1, MotionEvent e2,
+							float velocityX, float velocityY) {
+						if (e1.getX() - e2.getX() > 20
+								&& Math.abs(velocityX) > 0) {// 向左手势
+							doGotoForMissionDetailed();// 上一页
+						} else if (e2.getX() - e1.getX() > 20
+								&& Math.abs(velocityX) > 0) {// 向右手势
+							doGotoNextMissionDetailed();// 下一页
+						}
+						return false;
+					}
+				});
+
+		touchLayout = (LinearLayout) findViewById(R.id.touchlayout);
+		touchLayout.setOnTouchListener(new OnGestureAndTouchAdapter() {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
+				return mGestureDetector.onTouchEvent(event);
+			}
+		});
+		touchLayout.setLongClickable(true);
 	}
 }
