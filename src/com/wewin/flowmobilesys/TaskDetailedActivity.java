@@ -440,6 +440,7 @@ public class TaskDetailedActivity extends Activity {
 				intent.setClass(getApplicationContext(), TaskListActivity.class);
 				intent.putExtras(bundle);
 				startActivity(intent);
+				finish();
 			}
 		});
 	}

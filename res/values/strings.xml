@@ -2,7 +2,6 @@
 <resources>
 
     <string name="app_name">统一流程平台</string>
-    <string name="app_display_name">重庆移动统一流程平台</string>
     <string name="login">登 录</string>
     <string name="account">输入用户名</string>
     <string name="password">输入密码</string>
@@ -32,9 +31,24 @@
     <string name="task_des_str">任务内容描述：</string>
     <string name="task_counts_str">子任务数：</string>
     <string name="export_btn_str">导出</string>
-	<string name="title_str1">创建人</string>
-	<string name="title_str2">标题</string>
-	<string name="title_str3">状态</string>
-	<string name="title_str4">完成度</string>
-	<string name="title_str5">操作</string>
+    <string name="title_str1">创建人</string>
+    <string name="title_str2">标题</string>
+    <string name="title_str3">状态</string>
+    <string name="title_str4">完成度</string>
+    <string name="title_str5">操作</string>
+    <string name="title_str6">申请时间</string>
+    <string name="title_str7">车牌号</string>
+    <string name="title_str8">目的地</string>
+    <string name="title_str9">状态</string>
+    <string name="begintime_str">预计使用时间：</string>
+    <string name="endtime_str">预计返程时间：</string>
+    <string name="personnum_str">人数：</string>
+    <string name="reason_str">申请事由：</string>
+    <string name="destination_str">目的地：</string>
+    <string name="remark_str">备注：</string>
+    <string name="complete_str">完成</string>
+    <string name="cancle_str">取消</string>
+    <string name="add_str">添加</string>
+    <string name="carlist_str">申请车辆：</string>
+
 </resources>

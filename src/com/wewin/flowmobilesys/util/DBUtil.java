@@ -111,6 +111,26 @@ public class DBUtil {
 	}
 
 	/**
+	 * 删除车辆申请
+	 * 
+	 * @date 2013-6-5
+	 * @param userid
+	 * @param missionid
+	 * @return
+	 */
+	public List<String> doDeleteCarAppReq(String app_id) {
+		arrayList.clear();
+		brrayList.clear();
+
+		arrayList.add("app_id");
+		brrayList.add(app_id);
+
+		crrayList = Soap
+				.GetWebServre("doDeleteCarAppReq", arrayList, brrayList);
+		return crrayList;
+	}
+
+	/**
 	 * 调用关注WebService
 	 * 
 	 * @date 2013-6-5
@@ -323,5 +343,127 @@ public class DBUtil {
 			list.add(hashMap);
 		}
 		return list;
+	}
+
+	/**
+	 * 获取车辆，我的申请
+	 * 
+	 * @date 2013-6-18
+	 * @param userId
+	 * @return
+	 */
+	public List<HashMap<String, String>> selectMyCarAppInfo(String userId) {
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+		// 传递用户编号
+		arrayList.add("userId");
+		brrayList.add(userId);
+
+		crrayList = Soap.GetWebServre("selectMyCarAppInfo", arrayList,
+				brrayList);
+
+		for (int j = 0; j < crrayList.size(); j += 7) {
+			HashMap<String, String> hashMap = new HashMap<String, String>();
+			hashMap.put("id", crrayList.get(j));
+			hashMap.put("carid", crrayList.get(j + 1));
+			hashMap.put("username", crrayList.get(j + 2));
+			hashMap.put("carnum", crrayList.get(j + 3));
+			hashMap.put("destination", crrayList.get(j + 4));
+			if ("0".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "空闲");
+			else if ("1".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "申请中");
+			else
+				hashMap.put("status", "预约中");
+			hashMap.put("addtime", crrayList.get(j + 6));
+			list.add(hashMap);
+		}
+		return list;
+	}
+
+	/**
+	 * 车辆申请详细
+	 * 
+	 * @return
+	 */
+	public List<String> selectCarAppDetailedInfo(String app_id) {
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+
+		// 传递任务编号
+		arrayList.add("app_id");
+		brrayList.add(app_id);
+
+		crrayList = Soap.GetWebServre("selectCarAppDetailedInfo", arrayList,
+				brrayList);
+
+		return crrayList;
+	}
+
+	/**
+	 * 访问更新申请weservice
+	 * 
+	 * @date 2013-6-19
+	 * @param app_id
+	 * @param begin_time
+	 * @param end_time
+	 * @param person_num
+	 * @param reason
+	 * @param destination
+	 * @param remarks
+	 * @return
+	 */
+	public List<String> doUpdateCarAppReq(String app_id, String begin_time,
+			String end_time, String person_num, String reason,
+			String destination, String remarks) {
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+
+		// 传递任务编号
+		arrayList.add("app_id");
+		brrayList.add(app_id);
+
+		arrayList.add("begin_time");
+		brrayList.add(begin_time);
+
+		arrayList.add("end_time");
+		brrayList.add(end_time);
+
+		arrayList.add("person_num");
+		brrayList.add(person_num);
+
+		arrayList.add("reason");
+		brrayList.add(reason);
+
+		arrayList.add("destination");
+		brrayList.add(destination);
+
+		arrayList.add("remarks");
+		brrayList.add(remarks);
+
+		crrayList = Soap
+				.GetWebServre("doUpdateCarAppReq", arrayList, brrayList);
+
+		return crrayList;
+	}
+
+	/**
+	 * 查询所有的车辆
+	 * 
+	 * @date 2013-6-19
+	 * @return
+	 */
+	public ArrayList<String> selectAllCars() {
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+
+		crrayList = Soap.GetWebServre("selectAllCars", arrayList, brrayList);
+
+		return crrayList;
 	}
 }

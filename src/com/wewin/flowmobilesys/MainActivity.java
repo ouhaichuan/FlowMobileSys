@@ -7,6 +7,7 @@ import com.wewin.flowmobilesys.R;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -14,6 +15,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 主菜单Activity
@@ -24,9 +27,11 @@ import android.widget.SimpleAdapter;
 public class MainActivity extends Activity {
 	private GridView mGridView;// 菜单grid
 	private ButtomMenu buttomMenu;// 底部菜单
+	private TextView title;// 标题栏
 	private int[] imageRes = { R.drawable.tasklist, R.drawable.watch,
 			R.drawable.settings, R.drawable.datachart };
 	private String[] itemName = { "我的任务", "我的关注", "可见任务", "数据总概" };
+	private long exitTime = 0;// 退出倒计时
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,9 @@ public class MainActivity extends Activity {
 
 	private void initView() {
 		mGridView = (GridView) findViewById(R.id.MenuGridView);
+		title = (TextView) findViewById(R.id.main_tilte);
+		title.setText("重庆移动统一流程平台");
+
 		List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
 		int length = imageRes.length;
 		for (int i = 0; i < length; i++) {
@@ -171,5 +179,24 @@ public class MainActivity extends Activity {
 				mShowBottom = false;
 			}
 		}
+	}
+
+	/**
+	 * 添加返回菜单，退出按钮
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+			if ((System.currentTimeMillis() - exitTime) > 2000) {
+				Toast.makeText(getApplicationContext(), "再按一次退出程序", 0).show();
+				exitTime = System.currentTimeMillis();
+			} else {
+				finish();
+				System.exit(0);
+			}
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }
