@@ -76,13 +76,59 @@
         android:textSize="18.0sp" />
 
     <RelativeLayout
+        android:id="@+id/chk_layout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/login"
         android:layout_marginLeft="30.0dip"
         android:layout_marginRight="30.0dip"
+        android:layout_marginTop="8.0dip" >
+
+        <CheckBox
+            android:id="@+id/chk_tasksys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:background="@null"
+            android:button="@null"
+            android:checked="true"
+            android:drawableLeft="@drawable/checkbox_bg1"
+            android:drawablePadding="4.0dip"
+            android:text="@string/tasksys_str"
+            android:textColor="#ffffffff"
+            android:textSize="14.0sp" />
+
+        <CheckBox
+            android:id="@+id/chk_carsys"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:background="@null"
+            android:button="@null"
+            android:drawableLeft="@drawable/checkbox_bg1"
+            android:drawablePadding="4.0dip"
+            android:text="@string/carsys_str"
+            android:textColor="#ffffffff"
+            android:textSize="14.0sp" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/lines"
+        android:layout_width="fill_parent"
+        android:layout_height="1.0px"
+        android:layout_below="@id/chk_layout"
+        android:layout_marginLeft="30.0dip"
+        android:layout_marginRight="30.0dip"
         android:layout_marginTop="8.0dip"
-        android:layout_weight="1" >
+        android:background="#ffffffff" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lines"
+        android:layout_marginLeft="30.0dip"
+        android:layout_marginRight="30.0dip"
+        android:layout_marginTop="8.0dip" >
 
         <CheckBox
             android:id="@+id/auto_save_password"

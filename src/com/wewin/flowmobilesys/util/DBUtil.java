@@ -466,4 +466,56 @@ public class DBUtil {
 
 		return crrayList;
 	}
+
+	/**
+	 * Ìí¼ÓÉêÇëĞÅÏ¢
+	 * 
+	 * @date 2013-6-20
+	 * @param car_id
+	 * @param app_id
+	 * @param begintime
+	 * @param endtime
+	 * @param personnum
+	 * @param reason
+	 * @param destination
+	 * @param remark
+	 */
+	public List<String> doAddCarAppReq(String user_id, String car_num,
+			String car_id, String begin_time, String end_time,
+			String person_num, String reason, String destination, String remarks) {
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+
+		arrayList.add("user_id");
+		brrayList.add(user_id);
+
+		arrayList.add("car_num");
+		brrayList.add(car_num);
+
+		arrayList.add("car_id");
+		brrayList.add(car_id);
+
+		arrayList.add("begin_time");
+		brrayList.add(begin_time);
+
+		arrayList.add("end_time");
+		brrayList.add(end_time);
+
+		arrayList.add("person_num");
+		brrayList.add(person_num);
+
+		arrayList.add("reason");
+		brrayList.add(reason);
+
+		arrayList.add("destination");
+		brrayList.add(destination);
+
+		arrayList.add("remarks");
+		brrayList.add(remarks);
+
+		crrayList = Soap.GetWebServre("doAddCarAppReq", arrayList, brrayList);
+
+		return crrayList;
+	}
 }

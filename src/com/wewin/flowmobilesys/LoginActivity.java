@@ -17,6 +17,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -37,6 +39,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	private CheckBox auto_save_pass_bx;// 记住密码复选框
 	private String result = "false";
 	public Handler mHandler;
+	private CheckBox tasksysbox, carsysbox;
 
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -59,6 +62,31 @@ public class LoginActivity extends Activity implements OnClickListener {
 		auto_save_pass_bx = (CheckBox) findViewById(R.id.auto_save_password);
 		// 判断密码框的状态,如果为真写入用户名、密码
 		checkBoxState();
+
+		tasksysbox = (CheckBox) findViewById(R.id.chk_tasksys);
+		tasksysbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				if (isChecked) {
+					carsysbox.setChecked(false);
+				} else {
+					carsysbox.setChecked(true);
+				}
+			}
+		});
+		carsysbox = (CheckBox) findViewById(R.id.chk_carsys);
+		carsysbox.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView,
+					boolean isChecked) {
+				if (isChecked) {
+					tasksysbox.setChecked(false);
+				} else {
+					tasksysbox.setChecked(true);
+				}
+			}
+		});
 
 		mHandler = new Handler();
 	}
@@ -176,7 +204,11 @@ public class LoginActivity extends Activity implements OnClickListener {
 	 */
 	public void goMainActivity() {
 		Intent intent = new Intent();
-		intent.setClass(this, CarMainActivity.class);
+		if (tasksysbox.isChecked()) {
+			intent.setClass(this, MainActivity.class);
+		} else {
+			intent.setClass(this, CarMainActivity.class);
+		}
 		startActivity(intent);
 		finish();
 	}

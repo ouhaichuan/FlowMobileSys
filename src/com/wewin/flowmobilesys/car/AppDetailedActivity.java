@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import com.wewin.flowmobilesys.DialogFactory;
+import com.wewin.flowmobilesys.GlobalApplication;
 import com.wewin.flowmobilesys.R;
 import com.wewin.flowmobilesys.menu.ActionItem;
 import com.wewin.flowmobilesys.menu.TitlePopup;
@@ -32,6 +33,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * 申请详细Activity
@@ -41,7 +43,7 @@ import android.widget.TextView;
  */
 public class AppDetailedActivity extends Activity implements Callback {
 	private TextView detailedTitle;
-	private String app_id, car_id;
+	private String app_id, car_id, userId;
 	private DBUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler, showBoxHandler;
@@ -91,6 +93,9 @@ public class AppDetailedActivity extends Activity implements Callback {
 
 		app_id = intent.getStringExtra("app_id");
 		editflag = intent.getIntExtra("editflag", 0);
+
+		// 得到全局用户ID
+		userId = ((GlobalApplication) getApplication()).getUserId();
 
 		dbUtil = new DBUtil();
 		handler = new Handler();
@@ -217,17 +222,47 @@ public class AppDetailedActivity extends Activity implements Callback {
 		public void onClick(View v) {
 			switch (v.getId()) {
 			case R.id.complete_btn:
-				doupdateReqAndShowDialog();// 完成编辑
+				if (checkNull()) {
+					doupdateReqAndShowDialog();// 完成编辑
+				} else {
+					Toast.makeText(AppDetailedActivity.this, "前4项为必填内容", 0)
+							.show();
+				}
 				break;
 			case R.id.cancle_btn:
 				cancleEditing();// 取消编辑
 				break;
 			case R.id.add_btn:
-				// 添加
+				if (checkNull()) {
+					doaddReqAndShowDialog();// 添加
+				} else {
+					Toast.makeText(AppDetailedActivity.this, "前4项为必填内容", 0)
+							.show();
+				}
 				break;
 			default:
 				break;
 			}
+		}
+	}
+
+	/**
+	 * 检查输入框时候为空
+	 * 
+	 * @date 2013-6-20
+	 * @return
+	 */
+	public boolean checkNull() {
+		if (txt_addcarname.getText().toString().equals("") && editflag == 1) {
+			return false;
+		} else if (txt_begintime.getText().toString().equals("")) {
+			return false;
+		} else if (txt_endtime.getText().toString().equals("")) {
+			return false;
+		} else if (txt_personnum.getText().toString().equals("")) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 
@@ -306,6 +341,61 @@ public class AppDetailedActivity extends Activity implements Callback {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
 						doUpdateReq();
+					}
+				})
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				}).create();
+		alertDialog.show();
+	}
+
+	/**
+	 * 访问添加申请webservice
+	 * 
+	 * @date 2013-6-18
+	 */
+	public void doAddReq() {
+		if (mDialog != null) {
+			mDialog.dismiss();
+			mDialog = null;
+		}
+		mDialog = DialogFactory.creatRequestDialog(AppDetailedActivity.this,
+				"正在重新读取我的申请...");
+		mDialog.show();
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				dbUtil.doAddCarAppReq(userId, txt_addcarname.getText()
+						.toString(), car_id,
+						txt_begintime.getText().toString(), txt_endtime
+								.getText().toString(), txt_personnum.getText()
+								.toString(), txt_reason.getText().toString(),
+						txt_destination.getText().toString(), txt_remark
+								.getText().toString());// 添加申请webservice
+				// 跳转回申请页面
+				goToCarAppListActivity();
+				// 销毁窗口
+				mDialog.dismiss();
+			}
+		}).start();
+	}
+
+	/**
+	 * 申请详情Activity中的添加
+	 * 
+	 * @date 2013-6-20
+	 */
+	public void doaddReqAndShowDialog() {
+		Dialog alertDialog = new AlertDialog.Builder(this).setTitle("提示")
+				.setMessage("您确定添加该条申请吗？").setIcon(R.drawable.warning)
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						doAddReq();
 					}
 				})
 				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
@@ -680,8 +770,7 @@ public class AppDetailedActivity extends Activity implements Callback {
 			int selIndex = data.getInt("selIndex");
 			txt_addcarname.setText(datas.get(selIndex).split("\\$")[0]);
 			car_id = datas.get(selIndex).split("\\$")[1];
-			// TODO
-			System.out.println(car_id);
+
 			dismiss();
 			break;
 		}

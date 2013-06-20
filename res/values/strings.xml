@@ -50,5 +50,9 @@
     <string name="cancle_str">取消</string>
     <string name="add_str">添加</string>
     <string name="carlist_str">申请车辆：</string>
+    <string name="relogin_str">切换帐号</string>
+    <string name="exit_str">退出</string>
+    <string name="tasksys_str">流程管理平台</string>
+    <string name="carsys_str">车辆申请平台</string>
 
 </resources>

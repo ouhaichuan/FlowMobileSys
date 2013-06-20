@@ -11,6 +11,6 @@
         android:background="@drawable/chat_send_button_bg"
         android:paddingLeft="10dp"
         android:textColor="#ff333333"
-        android:textSize="13.0sp" />
+        android:textSize="16.0sp" />
 
 </LinearLayout>

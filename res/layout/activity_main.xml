@@ -99,77 +99,25 @@
             <LinearLayout
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30.0dip"
-                android:layout_marginRight="30.0dip"
-                android:layout_marginTop="12.0dip"
                 android:orientation="horizontal" >
 
-                <CheckBox
-                    android:id="@+id/hide_login"
-                    android:layout_width="1.0px"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.0"
-                    android:background="@null"
-                    android:button="@null"
-                    android:checked="false"
-                    android:drawableLeft="@drawable/checkbox_bg1"
-                    android:drawablePadding="4.0dip"
-                    android:text="设置一"
-                    android:textColor="#ffc6e6f9"
-                    android:textSize="14.0sp" />
+                <Button
+                    android:id="@+id/loginother_btn"
+                    android:layout_width="1dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chat_send_button_bg"
+                    android:text="@string/relogin_str"
+                    android:textSize="18.0sp" />
 
-                <CheckBox
-                    android:id="@+id/silence_login"
-                    android:layout_width="1.0px"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:background="@null"
-                    android:button="@null"
-                    android:checked="false"
-                    android:drawableLeft="@drawable/checkbox_bg1"
-                    android:drawablePadding="4.0dip"
-                    android:text="设置二"
-                    android:textColor="#ffc6e6f9"
-                    android:textSize="14.0sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="18.0dip"
-                android:layout_marginLeft="30.0dip"
-                android:layout_marginRight="30.0dip"
-                android:layout_marginTop="18.0dip"
-                android:orientation="horizontal" >
-
-                <CheckBox
-                    android:id="@+id/accept_accounts"
-                    android:layout_width="1.0px"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2.0"
-                    android:background="@null"
-                    android:button="@null"
-                    android:checked="true"
-                    android:drawableLeft="@drawable/checkbox_bg1"
-                    android:drawablePadding="4.0dip"
-                    android:singleLine="true"
-                    android:text="设置三"
-                    android:textColor="#ffc6e6f9"
-                    android:textSize="14.0sp" />
-
-                <CheckBox
-                    android:id="@+id/accept_troopmsg"
-                    android:layout_width="1.0px"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1.0"
-                    android:background="@null"
-                    android:button="@null"
-                    android:checked="true"
-                    android:drawableLeft="@drawable/checkbox_bg1"
-                    android:drawablePadding="4.0dip"
-                    android:text="设置四"
-                    android:textColor="#ffc6e6f9"
-                    android:textSize="14.0sp" />
+                <Button
+                    android:id="@+id/exit_btn"
+                    android:layout_width="1dp"
+                    android:layout_height="35dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/chat_send_button_bg"
+                    android:text="@string/exit_str"
+                    android:textSize="18.0sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

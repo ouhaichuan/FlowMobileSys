@@ -3,6 +3,8 @@ package com.wewin.flowmobilesys.car;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import com.wewin.flowmobilesys.LoginActivity;
 import com.wewin.flowmobilesys.R;
 import android.app.Activity;
 import android.content.Intent;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.SimpleAdapter;
@@ -31,6 +34,7 @@ public class CarMainActivity extends Activity {
 	private long exitTime = 0;// 退出倒计时
 	private int[] imageRes = { R.drawable.myapp };
 	private String[] itemName = { "我的申请" };
+	private Button loginother_btn, exit_btn;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -60,6 +64,43 @@ public class CarMainActivity extends Activity {
 		mGridView.setOnItemClickListener(new GridViewItemOnClick());
 
 		buttomMenu = new ButtomMenu();// 添加隐藏菜单
+
+		loginother_btn = (Button) findViewById(R.id.loginother_btn);// 切换帐号按钮
+		loginother_btn.setOnClickListener(new LoginExitBtnOnclickListener());
+		exit_btn = (Button) findViewById(R.id.exit_btn);// 退出按钮
+		exit_btn.setOnClickListener(new LoginExitBtnOnclickListener());
+	}
+
+	/*
+	 * 底部隐藏按钮点击事件
+	 */
+	public class LoginExitBtnOnclickListener implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			switch (v.getId()) {
+			case R.id.loginother_btn:// 切换帐号
+				goToLoginActivity();
+				break;
+			case R.id.exit_btn:// 退出
+				finish();
+				System.exit(0);
+				break;
+			default:
+				break;
+			}
+		}
+	}
+
+	/**
+	 * 跳转到登录页面
+	 * 
+	 * @date 2013-6-20
+	 */
+	public void goToLoginActivity() {
+		Intent intent = new Intent();
+		intent.setClass(this, LoginActivity.class);
+		startActivity(intent);
+		finish();
 	}
 
 	/*
