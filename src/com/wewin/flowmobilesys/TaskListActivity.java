@@ -224,6 +224,7 @@ public class TaskListActivity extends Activity {
 		intent.setClass(this, TaskDetailedActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);
+		finish();
 	}
 
 	/**

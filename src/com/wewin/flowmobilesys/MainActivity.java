@@ -45,7 +45,7 @@ public class MainActivity extends Activity {
 	private void initView() {
 		mGridView = (GridView) findViewById(R.id.MenuGridView);
 		title = (TextView) findViewById(R.id.main_tilte);
-		title.setText("重庆移动统一流程平台");
+		title.setText("重庆移动网络部项目管理平台");
 
 		List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
 		int length = imageRes.length;

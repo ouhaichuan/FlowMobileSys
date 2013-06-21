@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">统一流程平台</string>
+    <string name="app_name">云管理平台</string>
     <string name="login">登 录</string>
     <string name="account">输入用户名</string>
     <string name="password">输入密码</string>
@@ -52,7 +52,7 @@
     <string name="carlist_str">申请车辆：</string>
     <string name="relogin_str">切换帐号</string>
     <string name="exit_str">退出</string>
-    <string name="tasksys_str">流程管理平台</string>
+    <string name="tasksys_str">项目管理平台</string>
     <string name="carsys_str">车辆申请平台</string>
 
 </resources>

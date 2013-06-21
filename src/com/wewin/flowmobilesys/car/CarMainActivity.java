@@ -32,8 +32,8 @@ public class CarMainActivity extends Activity {
 	private ButtomMenu buttomMenu;// 底部菜单
 	private TextView title;// 标题栏
 	private long exitTime = 0;// 退出倒计时
-	private int[] imageRes = { R.drawable.myapp };
-	private String[] itemName = { "我的申请" };
+	private int[] imageRes = { R.drawable.myapp, R.drawable.management };
+	private String[] itemName = { "我的申请", "申请管理" };
 	private Button loginother_btn, exit_btn;
 
 	@Override

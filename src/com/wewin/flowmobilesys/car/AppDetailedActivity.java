@@ -141,7 +141,7 @@ public class AppDetailedActivity extends Activity implements Callback {
 		case 1:// Add
 			control_btn.setVisibility(View.GONE);
 			addBtnlayout.setVisibility(View.VISIBLE);
-			carlist_layout.setVisibility(View.VISIBLE);
+			carlist_layout.setVisibility(View.GONE);// 隐藏车辆选择框 //TODO
 
 			datapicker_btn1.setVisibility(View.VISIBLE);
 			datapicker_btn2.setVisibility(View.VISIBLE);
@@ -225,7 +225,7 @@ public class AppDetailedActivity extends Activity implements Callback {
 				if (checkNull()) {
 					doupdateReqAndShowDialog();// 完成编辑
 				} else {
-					Toast.makeText(AppDetailedActivity.this, "前4项为必填内容", 0)
+					Toast.makeText(AppDetailedActivity.this, "前3项为必填内容", 0)
 							.show();
 				}
 				break;
@@ -236,7 +236,7 @@ public class AppDetailedActivity extends Activity implements Callback {
 				if (checkNull()) {
 					doaddReqAndShowDialog();// 添加
 				} else {
-					Toast.makeText(AppDetailedActivity.this, "前4项为必填内容", 0)
+					Toast.makeText(AppDetailedActivity.this, "前3项为必填内容", 0)
 							.show();
 				}
 				break;
@@ -253,9 +253,7 @@ public class AppDetailedActivity extends Activity implements Callback {
 	 * @return
 	 */
 	public boolean checkNull() {
-		if (txt_addcarname.getText().toString().equals("") && editflag == 1) {
-			return false;
-		} else if (txt_begintime.getText().toString().equals("")) {
+		if (txt_begintime.getText().toString().equals("")) {
 			return false;
 		} else if (txt_endtime.getText().toString().equals("")) {
 			return false;
@@ -369,13 +367,13 @@ public class AppDetailedActivity extends Activity implements Callback {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				dbUtil.doAddCarAppReq(userId, txt_addcarname.getText()
-						.toString(), car_id,
-						txt_begintime.getText().toString(), txt_endtime
-								.getText().toString(), txt_personnum.getText()
-								.toString(), txt_reason.getText().toString(),
-						txt_destination.getText().toString(), txt_remark
-								.getText().toString());// 添加申请webservice
+				dbUtil.doAddCarAppReq(userId, "  ", "0", txt_begintime
+						.getText()// TODO
+						.toString(), txt_endtime.getText().toString(),
+						txt_personnum.getText().toString(), txt_reason
+								.getText().toString(), txt_destination
+								.getText().toString(), txt_remark.getText()
+								.toString());// 添加申请webservice
 				// 跳转回申请页面
 				goToCarAppListActivity();
 				// 销毁窗口
