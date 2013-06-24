@@ -1,4 +1,4 @@
-package com.wewin.flowmobilesys;
+package com.wewin.flowmobilesys.util;
 
 import android.content.Context;
 import android.util.DisplayMetrics;
@@ -11,7 +11,7 @@ import android.view.WindowManager;
  * @author HCOU
  * @time 2013.05.27 17:25:00
  */
-public class Utils {
+public class ScreenUtils {
 
 	public static int getScreenWidth(Context context) {
 		WindowManager manager = (WindowManager) context

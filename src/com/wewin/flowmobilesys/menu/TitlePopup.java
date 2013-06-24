@@ -2,7 +2,7 @@ package com.wewin.flowmobilesys.menu;
 
 import java.util.ArrayList;
 import com.wewin.flowmobilesys.R;
-import com.wewin.flowmobilesys.util.Util;
+import com.wewin.flowmobilesys.util.ExternalStorageUtil;
 import android.content.Context;
 import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
@@ -43,7 +43,7 @@ public class TitlePopup extends PopupWindow {
 		setFocusable(true);
 		setTouchable(true);
 		setOutsideTouchable(true);
-		mScreenWidth = Util.getScreenWidth(mContext);
+		mScreenWidth = ExternalStorageUtil.getScreenWidth(mContext);
 		setWidth(width);
 		setHeight(height);
 		setBackgroundDrawable(new BitmapDrawable());

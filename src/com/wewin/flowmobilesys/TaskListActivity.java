@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import com.wewin.flowmobilesys.GlobalApplication;
+import com.wewin.flowmobilesys.adapter.ListAdapter;
 import com.wewin.flowmobilesys.menu.TabMenu;
 import com.wewin.flowmobilesys.util.DBUtil;
 import android.app.Activity;
@@ -19,7 +20,6 @@ import android.view.View;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
 /**
@@ -34,7 +34,7 @@ public class TaskListActivity extends Activity {
 	private DBUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler;
-	private SimpleAdapter adapter;
+	private ListAdapter adapter;
 	private int taskFlag = 0;
 	private String userId = "";
 	private String missionId = "";
@@ -75,8 +75,8 @@ public class TaskListActivity extends Activity {
 			break;
 		case 2:
 			bodyAdapter = new TabMenu.MenuBodyAdapter(this, new int[] {
-					R.drawable.menu2, R.drawable.recycle }, new String[] {
-					"任务明细", "删除任务" });
+					R.drawable.menu2, R.drawable.write }, new String[] {
+					"任务明细", "填报完成情况" });
 			break;
 		case 3:
 			bodyAdapter = new TabMenu.MenuBodyAdapter(this, new int[] {
@@ -158,14 +158,7 @@ public class TaskListActivity extends Activity {
 		handler.post(new Runnable() {
 			@Override
 			public void run() {
-				adapter = new SimpleAdapter(getApplicationContext(), list,
-						R.layout.adapter_item, new String[] { "missionId",
-								"createUserName", "Title", "beginTime",
-								"endTime", "status", "counts" }, new int[] {
-								R.id.txt_missionid, R.id.txt_createUserName,
-								R.id.txt_Title, R.id.txt_beginTime,
-								R.id.txt_endTime, R.id.txt_status,
-								R.id.txt_counts });
+				adapter = new ListAdapter(getApplicationContext(), list);
 				listView.setAdapter(adapter);
 
 				switch (taskFlag) {
@@ -238,7 +231,7 @@ public class TaskListActivity extends Activity {
 			doCancleWatchReqAndShowDialog();
 			break;
 		case 2:// 我的任务页面
-			doDeleteReqAndShowDialog();
+			goToWriteActivity();
 			break;
 		case 3:// 可见任务
 			if ("已关注".equals(canSee)) {
@@ -270,26 +263,18 @@ public class TaskListActivity extends Activity {
 	}
 
 	/**
-	 * 我的任务Activity中的删除
+	 * 我的任务Activity中的填报完成情况
 	 * 
 	 * @date 2013-6-5
 	 */
-	public void doDeleteReqAndShowDialog() {
-		Dialog alertDialog = new AlertDialog.Builder(this).setTitle("提示")
-				.setMessage("您确定删除该条任务吗？").setIcon(R.drawable.warning)
-				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						doDeleteReq();
-					}
-				})
-				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						return;
-					}
-				}).create();
-		alertDialog.show();
+	public void goToWriteActivity() {
+		Intent intent = new Intent();
+		Bundle bundle = new Bundle();
+		bundle.putString("missionId", missionId);// 传送missionId
+		intent.setClass(this, ReportListActivity.class);
+		intent.putExtras(bundle);
+		startActivity(intent);
+		finish();
 	}
 
 	/**

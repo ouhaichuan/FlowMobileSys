@@ -10,12 +10,15 @@
     <string name="forgot_password">忘记密码</string>
     <string name="sending_request">发送请求中…</string>
     <string name="findback_pass">找回密码</string>
+    <string name="reportinfotitle_str">完成情况</string>
     <string name="more_str">更多选项</string>
     <string name="control_str">操作</string>
     <string name="userid_str">用户名:</string>
+    <string name="reportinfodes_str">情况描述：</string>
     <string name="userid_str_warning">请输入用户名</string>
     <string name="waring_str">提示：我们会将随机生成的密码发到你的注册手机上</string>
     <string name="find_back_str">找回</string>
+    <string name="addreportbtn_str">添加</string>
     <string name="tasktype_str">任务类型：</string>
     <string name="response_person_str">责任人：</string>
     <string name="taskid_str">任务编号：</string>
@@ -40,6 +43,9 @@
     <string name="title_str7">车牌号</string>
     <string name="title_str8">目的地</string>
     <string name="title_str9">状态</string>
+    <string name="title_str10">描述</string>
+    <string name="title_str11">时间</string>
+    <string name="title_str12">操作</string>
     <string name="begintime_str">预计使用时间：</string>
     <string name="endtime_str">预计返程时间：</string>
     <string name="personnum_str">人数：</string>

@@ -1,6 +1,8 @@
 package com.wewin.flowmobilesys;
 
 import com.wewin.flowmobilesys.R;
+import com.wewin.flowmobilesys.util.ScreenUtils;
+
 import android.app.Dialog;
 import android.content.Context;
 import android.view.Window;
@@ -20,7 +22,7 @@ public class DialogFactory {
 		dialog.setContentView(R.layout.dialog_layout);
 		Window window = dialog.getWindow();
 		WindowManager.LayoutParams lp = window.getAttributes();
-		int width = Utils.getScreenWidth(context);
+		int width = ScreenUtils.getScreenWidth(context);
 		lp.width = (int) (0.6 * width);
 
 		TextView titleTxtv = (TextView) dialog.findViewById(R.id.tvLoad);

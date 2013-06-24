@@ -95,7 +95,6 @@ public class DBUtil {
 	 * 删除任务
 	 * 
 	 * @date 2013-6-5
-	 * @param userid
 	 * @param missionid
 	 * @return
 	 */
@@ -168,7 +167,7 @@ public class DBUtil {
 
 		crrayList = Soap.GetWebServre("selectWatchMissionInfo", arrayList,
 				brrayList);
-		for (int j = 0; j < crrayList.size(); j += 7) {
+		for (int j = 0; j < crrayList.size(); j += 8) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
 			hashMap.put("missionId", crrayList.get(j));
 			hashMap.put("createUserName", crrayList.get(j + 1));
@@ -176,14 +175,21 @@ public class DBUtil {
 			hashMap.put("beginTime", crrayList.get(j + 3));
 			hashMap.put("endTime", crrayList.get(j + 4));
 
-			if ("0".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "未开始");
-			else if ("1".equals(crrayList.get(j + 5)))
+			if ("1".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "进行中");
-			else
-				hashMap.put("status", "完成");
+			else if ("2".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "即将超时");
+			else if ("3".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "提交待审");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "已完成");
+			else if ("5".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时");
 
-			hashMap.put("counts", crrayList.get(j + 6));
+			hashMap.put("importance", crrayList.get(j + 6));// 重要性
+			hashMap.put("counts", crrayList.get(j + 7));
 			list.add(hashMap);
 		}
 		return list;
@@ -280,7 +286,7 @@ public class DBUtil {
 		crrayList = Soap.GetWebServre("selectMyMissionInfo", arrayList,
 				brrayList);
 
-		for (int j = 0; j < crrayList.size(); j += 7) {
+		for (int j = 0; j < crrayList.size(); j += 8) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
 			hashMap.put("missionId", crrayList.get(j));
 			hashMap.put("createUserName", crrayList.get(j + 1));
@@ -288,14 +294,21 @@ public class DBUtil {
 			hashMap.put("beginTime", crrayList.get(j + 3));
 			hashMap.put("endTime", crrayList.get(j + 4));
 
-			if ("0".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "未开始");
-			else if ("1".equals(crrayList.get(j + 5)))
+			if ("1".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "进行中");
-			else
-				hashMap.put("status", "完成");
+			else if ("2".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "即将超时");
+			else if ("3".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "提交待审");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "已完成");
+			else if ("5".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时");
 
-			hashMap.put("counts", crrayList.get(j + 6));
+			hashMap.put("importance", crrayList.get(j + 6));// 重要性
+			hashMap.put("counts", crrayList.get(j + 7));
 
 			list.add(hashMap);
 		}
@@ -321,21 +334,30 @@ public class DBUtil {
 		crrayList = Soap.GetWebServre("selectCanSeeMissionInfo", arrayList,
 				brrayList);
 
-		for (int j = 0; j < crrayList.size(); j += 7) {
+		for (int j = 0; j < crrayList.size(); j += 8) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
 			hashMap.put("missionId", crrayList.get(j));
 			hashMap.put("createUserName", crrayList.get(j + 1));
 			hashMap.put("Title", crrayList.get(j + 2));
 			hashMap.put("beginTime", crrayList.get(j + 3));
 			hashMap.put("endTime", crrayList.get(j + 4));
-			if ("0".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "未开始");
-			else if ("1".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "进行中");
-			else
-				hashMap.put("status", "完成");
 
-			if (!"0".equals(crrayList.get(j + 6)))
+			if ("1".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "进行中");
+			else if ("2".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "即将超时");
+			else if ("3".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "提交待审");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "已完成");
+			else if ("5".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时");
+
+			hashMap.put("importance", crrayList.get(j + 6));// 重要性
+
+			if (!"0".equals(crrayList.get(j + 7)))
 				hashMap.put("counts", "已关注");
 			else
 				hashMap.put("counts", "未关注");
@@ -516,6 +538,71 @@ public class DBUtil {
 
 		crrayList = Soap.GetWebServre("doAddCarAppReq", arrayList, brrayList);
 
+		return crrayList;
+	}
+
+	/**
+	 * 获取已添加完成情况
+	 * 
+	 * @return
+	 */
+	public List<HashMap<String, String>> selectReportInfo(String userId,
+			String missionId) {
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+
+		// 传递用户编号
+		arrayList.add("userId");
+		brrayList.add(userId);
+		arrayList.add("missionId");
+		brrayList.add(missionId);
+
+		crrayList = Soap.GetWebServre("selectReportInfo", arrayList, brrayList);
+
+		for (int j = 0; j < crrayList.size(); j += 3) {
+			HashMap<String, String> hashMap = new HashMap<String, String>();
+			hashMap.put("id", crrayList.get(j));
+			hashMap.put("des", crrayList.get(j + 1));
+			hashMap.put("addtime", crrayList.get(j + 2));
+
+			list.add(hashMap);
+		}
+		return list;
+	}
+
+	/**
+	 * 
+	 * @date 2013-6-24
+	 * @param report_id
+	 */
+	public List<String> doDeleteReportReq(String report_id) {
+		arrayList.clear();
+		brrayList.clear();
+
+		arrayList.add("report_id");
+		brrayList.add(report_id);
+
+		crrayList = Soap
+				.GetWebServre("doDeleteReportReq", arrayList, brrayList);
+		return crrayList;
+	}
+
+	public List<String> doAddReportReq(String report_info, String missionId,
+			String userId) {
+		arrayList.clear();
+		brrayList.clear();
+
+		arrayList.add("report_info");
+		brrayList.add(report_info);
+		arrayList.add("missionId");
+		brrayList.add(missionId);
+		arrayList.add("userId");
+		brrayList.add(userId);
+
+		crrayList = Soap.GetWebServre("doAddReportReq", arrayList, brrayList);
 		return crrayList;
 	}
 }

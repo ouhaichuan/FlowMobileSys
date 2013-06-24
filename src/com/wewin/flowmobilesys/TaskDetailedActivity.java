@@ -2,6 +2,8 @@ package com.wewin.flowmobilesys;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.wewin.flowmobilesys.adapter.OnGestureAndTouchAdapter;
 import com.wewin.flowmobilesys.menu.ActionItem;
 import com.wewin.flowmobilesys.menu.TitlePopup;
 import com.wewin.flowmobilesys.util.DBUtil;
@@ -14,6 +16,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.GestureDetector;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.GestureDetector.OnGestureListener;
@@ -117,8 +120,6 @@ public class TaskDetailedActivity extends Activity {
 					R.drawable.cancelwatch_mini_2));
 			break;
 		case 2:// 我的任务
-			titlePopup.addAction(new ActionItem(this, "删除任务",
-					R.drawable.recycle_mini_2));
 			break;
 		case 3:// 可见任务
 			titlePopup.addAction(new ActionItem(this, "关注",
@@ -565,5 +566,18 @@ public class TaskDetailedActivity extends Activity {
 			}
 		});
 		touchLayout.setLongClickable(true);
+	}
+
+	/**
+	 * 添加返回菜单，退出按钮
+	 */
+	@Override
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK
+				&& event.getAction() == KeyEvent.ACTION_DOWN) {
+			goToTaskListActivity(taskFlag);
+			return true;
+		}
+		return super.onKeyDown(keyCode, event);
 	}
 }

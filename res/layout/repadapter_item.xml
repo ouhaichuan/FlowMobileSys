@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center" >
+
+    <TableRow
+        android:id="@+id/classroom_detail_item_tableRow"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp" >
+
+        <TextView
+            android:id="@+id/txt_reportId"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:gravity="left"
+            android:height="37dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/window_bg"
+            android:textSize="17sp"
+            android:visibility="gone" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/txt_repdes"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="2"
+            android:gravity="left"
+            android:height="37dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/window_bg"
+            android:textSize="17sp" >
+        </TextView>
+
+        <TextView
+            android:id="@+id/txt_repaddtime"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:height="37dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="@color/window_bg"
+            android:textSize="17sp" >
+        </TextView>
+
+        <ImageView
+            android:id="@+id/repcotrol_imge"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:height="37dp"
+            android:src="@drawable/touch" />
+    </TableRow>
+
+</TableLayout>

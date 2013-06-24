@@ -1,4 +1,4 @@
-package com.wewin.flowmobilesys;
+package com.wewin.flowmobilesys.adapter;
 
 import android.view.MotionEvent;
 import android.view.View;

@@ -15,8 +15,8 @@ import android.view.inputmethod.InputMethodManager;
  * @author HCOU
  * @date 2013-6-2
  */
-public class Util {
-	public final static String TAG = Util.class.getSimpleName();
+public class ExternalStorageUtil {
+	public final static String TAG = ExternalStorageUtil.class.getSimpleName();
 
 	/**
 	 * get exter store status if state is Environment.MEDIA_MOUNTED the exter
@@ -34,7 +34,7 @@ public class Util {
 	 * @return
 	 */
 	public static boolean getExternalStoreState() {
-		if (Environment.MEDIA_MOUNTED.equals(Util.getExternalStorageState()))
+		if (Environment.MEDIA_MOUNTED.equals(ExternalStorageUtil.getExternalStorageState()))
 			return true;
 		return false;
 	}

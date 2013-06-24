@@ -34,7 +34,7 @@ public class DataChartActivity extends Activity {
 
 	/** Colors to be used for the pie slices. */
 	private static int[] COLORS = new int[] { Color.GREEN, Color.BLUE,
-			Color.MAGENTA, Color.CYAN };
+			Color.MAGENTA, Color.CYAN, Color.RED, Color.GRAY };
 	/** The main series that will include all the data. */
 	private CategorySeries mSeries = new CategorySeries("");
 	/** The main renderer for the main dataset. */
@@ -81,8 +81,8 @@ public class DataChartActivity extends Activity {
 		mRenderer.setZoomButtonsVisible(true);
 		mRenderer.setStartAngle(180);
 		mRenderer.setDisplayValues(true);
-		mRenderer.setLegendTextSize(24.0f);
-		mRenderer.setLabelsTextSize(24.0f);
+		mRenderer.setLegendTextSize(30.0f);
+		mRenderer.setLabelsTextSize(35.0f);
 
 		setViewData();
 	}

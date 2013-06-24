@@ -57,6 +57,16 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
+            android:name=".ReportListActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name=".ReportAddActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
             android:name="com.wewin.flowmobilesys.car.CarMainActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
@@ -67,7 +77,7 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.wewin.flowmobilesys.car.AppDetailedActivity"
+            android:name=".car.AppDetailedActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>

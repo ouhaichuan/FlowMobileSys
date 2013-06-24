@@ -74,7 +74,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -103,7 +103,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -131,8 +131,9 @@
                         android:layout_weight="5"
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
-                        android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textColor="#FF0000"
+                        android:textSize="15.0sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -161,7 +162,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -190,7 +191,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -219,7 +220,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -248,7 +249,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -277,7 +278,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -306,7 +307,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -335,7 +336,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -364,7 +365,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -393,7 +394,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -422,7 +423,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -451,7 +452,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
                 </LinearLayout>
             </LinearLayout>
         </ScrollView>
