@@ -4,12 +4,14 @@ import com.wewin.flowmobilesys.R;
 import com.wewin.flowmobilesys.util.DBUtil;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -28,6 +30,7 @@ public class ReportAddActivity extends Activity implements OnClickListener {
 	public Handler mHandler;
 	private DBUtil dbUtil;
 	private String missionId, userId;
+	private String backFlag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class ReportAddActivity extends Activity implements OnClickListener {
 
 		Intent intent = getIntent();
 		missionId = intent.getStringExtra("missionId");// 得到任务ID
+		backFlag = intent.getStringExtra("backFlag");// 返回键标记
 		userId = ((GlobalApplication) getApplication()).getUserId();// 得到全局用户ID
 
 		mHandler = new Handler();
@@ -88,6 +92,12 @@ public class ReportAddActivity extends Activity implements OnClickListener {
 	 * @date 2013-6-24
 	 */
 	private void doAddReportRequest() {
+		// 隐藏输入法
+		InputMethodManager imm = (InputMethodManager) getApplicationContext()
+				.getSystemService(Context.INPUT_METHOD_SERVICE);
+		// 显示或者隐藏输入法
+		imm.toggleSoftInput(0, InputMethodManager.HIDE_NOT_ALWAYS);
+
 		if (mDialog != null) {
 			mDialog.dismiss();
 			mDialog = null;
@@ -131,6 +141,7 @@ public class ReportAddActivity extends Activity implements OnClickListener {
 		Intent intent = new Intent();
 		Bundle bundle = new Bundle();
 		bundle.putString("missionId", missionId);// 传送missionId
+		bundle.putString("backFlag", backFlag);// 传送backFlag
 		intent.setClass(this, ReportListActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);

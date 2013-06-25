@@ -38,7 +38,9 @@ public class TaskListActivity extends Activity {
 	private int taskFlag = 0;
 	private String userId = "";
 	private String missionId = "";
+	private String intent_missionId;
 	private String canSee = "";
+	private String datachart_index = "";
 	private List<HashMap<String, String>> list;
 	TabMenu.MenuBodyAdapter bodyAdapter;
 	TabMenu tabMenu;
@@ -83,6 +85,12 @@ public class TaskListActivity extends Activity {
 					R.drawable.menu2, R.drawable.watch_mini }, new String[] {
 					"任务明细", "关注任务" });
 			break;
+		case 4:// 子任务列表
+			intent_missionId = intent.getStringExtra("intent_missionId");
+			break;
+		case 5:// DataChart列表
+			datachart_index = intent.getStringExtra("index");
+			break;
 		}
 
 		tabMenu = new TabMenu(this, new BodyClickEvent(), R.drawable.login_bg);// 出现与消失的动画
@@ -113,6 +121,13 @@ public class TaskListActivity extends Activity {
 					break;
 				case 3:// 可见任务
 					list = dbUtil.selectCanSeeMissionInfo(userId);
+					break;
+				case 4:// 子任务
+					list = dbUtil.selectChildMissionInfo(intent_missionId);
+					break;
+				case 5:// DataChart列表
+					list = dbUtil.selectChartMissionInfo(userId,
+							datachart_index);
 					break;
 				default:
 					list = new ArrayList<HashMap<String, String>>();
@@ -146,8 +161,10 @@ public class TaskListActivity extends Activity {
 			int[] positions = new int[2];
 			view.getLocationInWindow(positions);
 
-			tabMenu.showAtLocation(view, Gravity.TOP, positions[0],
-					positions[1]);
+			if (taskFlag != 4 && taskFlag != 5) {// 子任务和DataChart不弹出
+				tabMenu.showAtLocation(view, Gravity.TOP, positions[0],
+						positions[1]);
+			}
 		}
 	}
 
@@ -170,6 +187,12 @@ public class TaskListActivity extends Activity {
 					break;
 				case 3:
 					taskTitle.setText("可见任务");
+					break;
+				case 4:
+					taskTitle.setText("子任务");
+					break;
+				case 5:
+					taskTitle.setText("数据总概任务显示");
 					break;
 				}
 			}
@@ -240,6 +263,8 @@ public class TaskListActivity extends Activity {
 			}
 			doOkWatchReqAndShowDialog();
 			break;
+		case 4:// 子任务页面
+			break;
 		default:
 			break;
 		}
@@ -271,6 +296,7 @@ public class TaskListActivity extends Activity {
 		Intent intent = new Intent();
 		Bundle bundle = new Bundle();
 		bundle.putString("missionId", missionId);// 传送missionId
+		bundle.putString("backFlag", "list");// 传送backFlag
 		intent.setClass(this, ReportListActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);
@@ -298,33 +324,6 @@ public class TaskListActivity extends Activity {
 					}
 				}).create();
 		alertDialog.show();
-	}
-
-	/**
-	 * 访问删除任务webservice
-	 * 
-	 * @date 2013-6-5
-	 */
-	public void doDeleteReq() {
-		if (mDialog != null) {
-			mDialog.dismiss();
-			mDialog = null;
-		}
-		mDialog = DialogFactory.creatRequestDialog(TaskListActivity.this,
-				"正在重新读取我的任务...");
-		mDialog.show();
-
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				dbUtil.doDeleteReq(missionId);// 删除任务webservice
-				list = dbUtil.selectMyMissionInfo(userId);// 重新读取我的任务
-				// 更新界面
-				updateDialog();
-				// 销毁窗口
-				mDialog.dismiss();
-			}
-		}).start();
 	}
 
 	/**

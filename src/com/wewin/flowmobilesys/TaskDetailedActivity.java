@@ -47,7 +47,7 @@ public class TaskDetailedActivity extends Activity {
 	private Dialog mDialog;
 	private Handler handler;
 	private List<String> list;
-	private Button control_btn;
+	private Button control_btn, child_btn;
 	private TitlePopup titlePopup;
 	private GestureDetector mGestureDetector;
 	private LinearLayout touchLayout;
@@ -85,6 +85,9 @@ public class TaskDetailedActivity extends Activity {
 		control_btn = (Button) findViewById(R.id.control_btn);// 标题栏菜单按钮
 		control_btn.setOnClickListener(new TitleButtnOnclickLisenter());
 
+		child_btn = (Button) findViewById(R.id.child_btn);// 子菜单按钮
+		child_btn.setOnClickListener(new ChildButtnOnclickLisenter());
+
 		txt_tasktype = (TextView) findViewById(R.id.txt_tasktype);
 		txt_response_person = (TextView) findViewById(R.id.txt_response_person);
 		txt_taskid = (TextView) findViewById(R.id.txt_taskid);
@@ -120,6 +123,8 @@ public class TaskDetailedActivity extends Activity {
 					R.drawable.cancelwatch_mini_2));
 			break;
 		case 2:// 我的任务
+			titlePopup.addAction(new ActionItem(this, "填写情况",
+					R.drawable.write_mini));
 			break;
 		case 3:// 可见任务
 			titlePopup.addAction(new ActionItem(this, "关注",
@@ -150,6 +155,25 @@ public class TaskDetailedActivity extends Activity {
 	};
 
 	/**
+	 * 子任务按钮点击事件
+	 * 
+	 * @author HCOU
+	 * @date 2013-6-25
+	 */
+	class ChildButtnOnclickLisenter implements OnClickListener {
+		@Override
+		public void onClick(View v) {
+			Intent intent = new Intent();
+			Bundle bundle = new Bundle();
+			bundle.putInt("taskFlag", 4);
+			bundle.putString("intent_missionId", missionId);
+			intent.setClass(getApplicationContext(), TaskListActivity.class);
+			intent.putExtras(bundle);
+			startActivity(intent);
+		}
+	};
+
+	/**
 	 * 顶部菜单项点击事件
 	 * 
 	 * @author HCOU
@@ -164,8 +188,8 @@ public class TaskDetailedActivity extends Activity {
 				case 1:// 我的关注的取消关注功能
 					doCancleWatchReqAndShowDialog();
 					break;
-				case 2:// 我的任务中的删除功能
-					doDeleteReqAndShowDialog();
+				case 2:// 我的任务中的填写完成情况功能
+					goToWriteActivity();
 					break;
 				case 3:// 可见任务中的关注功能
 					if ("已关注".equals(canSee)) {
@@ -192,7 +216,23 @@ public class TaskDetailedActivity extends Activity {
 			}
 			titlePopup.dismiss();
 		}
-	};
+	}
+
+	/**
+	 * 我的任务Activity中的填报完成情况
+	 * 
+	 * @date 2013-6-5
+	 */
+	public void goToWriteActivity() {
+		Intent intent = new Intent();
+		Bundle bundle = new Bundle();
+		bundle.putString("missionId", missionId);// 传送missionId
+		bundle.putString("backFlag", "detailed");// 传送backFlag
+		intent.setClass(this, ReportListActivity.class);
+		intent.putExtras(bundle);
+		startActivity(intent);
+		finish();
+	}
 
 	/**
 	 * 导出文件确认
@@ -380,55 +420,6 @@ public class TaskDetailedActivity extends Activity {
 	}
 
 	/**
-	 * 任务详细Activity中的删除
-	 * 
-	 * @date 2013-6-5
-	 */
-	public void doDeleteReqAndShowDialog() {
-		Dialog alertDialog = new AlertDialog.Builder(this).setTitle("提示")
-				.setMessage("您确定删除该条任务吗？").setIcon(R.drawable.warning)
-				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						doDeleteReq();
-					}
-				})
-				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-					@Override
-					public void onClick(DialogInterface dialog, int which) {
-						return;
-					}
-				}).create();
-		alertDialog.show();
-	}
-
-	/**
-	 * 访问删除任务webservice
-	 * 
-	 * @date 2013-6-5
-	 */
-	public void doDeleteReq() {
-		if (mDialog != null) {
-			mDialog.dismiss();
-			mDialog = null;
-		}
-		mDialog = DialogFactory.creatRequestDialog(TaskDetailedActivity.this,
-				"正在重新读取我的任务...");
-		mDialog.show();
-
-		new Thread(new Runnable() {
-			@Override
-			public void run() {
-				dbUtil.doDeleteReq(missionId);// 删除任务webservice
-				// 跳转到我的任务页面
-				goToTaskListActivity(2);
-				// 销毁窗口
-				mDialog.dismiss();
-			}
-		}).start();
-	}
-
-	/**
 	 * 跳转我的任务显示页面
 	 */
 	private void goToTaskListActivity(final int flag) {
@@ -547,10 +538,10 @@ public class TaskDetailedActivity extends Activity {
 					@Override
 					public boolean onFling(MotionEvent e1, MotionEvent e2,
 							float velocityX, float velocityY) {
-						if (e1.getX() - e2.getX() > 20
+						if (e1.getX() - e2.getX() > 100
 								&& Math.abs(velocityX) > 0) {// 向左手势
 							doGotoForMissionDetailed();// 上一页
-						} else if (e2.getX() - e1.getX() > 20
+						} else if (e2.getX() - e1.getX() > 100
 								&& Math.abs(velocityX) > 0) {// 向右手势
 							doGotoNextMissionDetailed();// 下一页
 						}

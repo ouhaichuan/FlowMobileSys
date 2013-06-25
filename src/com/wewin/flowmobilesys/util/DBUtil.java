@@ -605,4 +605,91 @@ public class DBUtil {
 		crrayList = Soap.GetWebServre("doAddReportReq", arrayList, brrayList);
 		return crrayList;
 	}
+
+	public List<HashMap<String, String>> selectChildMissionInfo(
+			String intent_missionId) {
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+		arrayList.add("intent_missionId");
+		brrayList.add(intent_missionId);
+
+		crrayList = Soap.GetWebServre("selectChildMissionInfo", arrayList,
+				brrayList);
+
+		for (int j = 0; j < crrayList.size(); j += 8) {
+			HashMap<String, String> hashMap = new HashMap<String, String>();
+			hashMap.put("missionId", crrayList.get(j));
+			hashMap.put("createUserName", crrayList.get(j + 1));
+			hashMap.put("Title", crrayList.get(j + 2));
+			hashMap.put("beginTime", crrayList.get(j + 3));
+			hashMap.put("endTime", crrayList.get(j + 4));
+
+			if ("1".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "进行中");
+			else if ("2".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "即将超时");
+			else if ("3".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "提交待审");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "已完成");
+			else if ("5".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时");
+
+			hashMap.put("importance", crrayList.get(j + 6));// 重要性
+			hashMap.put("counts", crrayList.get(j + 7));
+
+			list.add(hashMap);
+		}
+		return list;
+	}
+
+	public List<HashMap<String, String>> selectChartMissionInfo(String userId,
+			String datachart_index) {
+		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
+
+		arrayList.clear();
+		brrayList.clear();
+		crrayList.clear();
+		// 传递用户编号
+		arrayList.add("userId");
+		brrayList.add(userId);
+		arrayList.add("datachart_index");
+		brrayList.add(datachart_index);
+
+		crrayList = Soap.GetWebServre("selectChartMissionInfo", arrayList,
+				brrayList);
+
+		for (int j = 0; j < crrayList.size(); j += 8) {
+			HashMap<String, String> hashMap = new HashMap<String, String>();
+			hashMap.put("missionId", crrayList.get(j));
+			hashMap.put("createUserName", crrayList.get(j + 1));
+			hashMap.put("Title", crrayList.get(j + 2));
+			hashMap.put("beginTime", crrayList.get(j + 3));
+			hashMap.put("endTime", crrayList.get(j + 4));
+
+			if ("1".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "进行中");
+			else if ("2".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "即将超时");
+			else if ("3".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "提交待审");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "已完成");
+			else if ("5".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时");
+
+			hashMap.put("importance", crrayList.get(j + 6));// 重要性
+			hashMap.put("counts", crrayList.get(j + 7));
+
+			list.add(hashMap);
+		}
+		return list;
+	}
 }

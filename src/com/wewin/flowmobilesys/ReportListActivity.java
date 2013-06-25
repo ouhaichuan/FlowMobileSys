@@ -40,6 +40,7 @@ public class ReportListActivity extends Activity {
 	private String userId = "";
 	private List<HashMap<String, String>> list;
 	private String missionId;// 任务ID
+	private String backFlag;
 	private String report_id;
 	private Button addreport_btn;
 
@@ -53,6 +54,7 @@ public class ReportListActivity extends Activity {
 	private void initView() {
 		Intent intent = getIntent();
 		missionId = intent.getStringExtra("missionId");// 得到任务ID
+		backFlag = intent.getStringExtra("backFlag");// 返回键标记
 
 		listView = (ListView) findViewById(R.id.reportlistView);
 		listView.setOnItemClickListener(new MyItemClickListhener());// 注册点击事件
@@ -168,6 +170,7 @@ public class ReportListActivity extends Activity {
 		Intent intent = new Intent();
 		Bundle bundle = new Bundle();
 		bundle.putString("missionId", missionId);// 传送missionId
+		bundle.putString("backFlag", backFlag);// 传送backFlag
 		intent.setClass(this, ReportAddActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);
@@ -182,6 +185,23 @@ public class ReportListActivity extends Activity {
 		Bundle bundle = new Bundle();
 		bundle.putInt("taskFlag", 2);
 		intent.setClass(this, TaskListActivity.class);
+		intent.putExtras(bundle);
+		startActivity(intent);
+		finish();
+	}
+
+	/**
+	 * 跳转任务详细Activity
+	 * 
+	 * @date 2013-6-6
+	 */
+	public void gotoTaskDetailedActivity() {
+		Intent intent = new Intent();
+		Bundle bundle = new Bundle();
+		bundle.putString("missionId", missionId);// 传送missionId
+		bundle.putInt("taskFlag", 2);// 传送菜单标签
+		bundle.putString("canSee", "");// 传送是否已关注标记
+		intent.setClass(this, TaskDetailedActivity.class);
 		intent.putExtras(bundle);
 		startActivity(intent);
 		finish();
@@ -244,7 +264,11 @@ public class ReportListActivity extends Activity {
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 		if (keyCode == KeyEvent.KEYCODE_BACK
 				&& event.getAction() == KeyEvent.ACTION_DOWN) {
-			goToTaskListActivity();
+			if (backFlag.equals("detailed"))
+				gotoTaskDetailedActivity();
+			else if (backFlag.equals("list"))
+				goToTaskListActivity();
+
 			return true;
 		}
 		return super.onKeyDown(keyCode, event);

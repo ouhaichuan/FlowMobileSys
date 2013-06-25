@@ -10,6 +10,7 @@ import org.achartengine.renderer.SimpleSeriesRenderer;
 import com.wewin.flowmobilesys.util.DBUtil;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -161,6 +162,8 @@ public class DataChartActivity extends Activity {
 							mRenderer.getSeriesRendererAt(i).setHighlighted(
 									i == seriesSelection.getPointIndex());
 						}
+						// index:0代表完成，1代表超时，2代表进行中
+						goToTaskListActivity(seriesSelection.getPointIndex());
 						mChartView.repaint();
 					}
 				}
@@ -170,5 +173,15 @@ public class DataChartActivity extends Activity {
 		} else {
 			mChartView.repaint();
 		}
+	}
+
+	public void goToTaskListActivity(int index) {
+		Intent intent = new Intent();
+		Bundle bundle = new Bundle();
+		bundle.putInt("taskFlag", 5);
+		bundle.putString("index", index + "");
+		intent.setClass(getApplicationContext(), TaskListActivity.class);
+		intent.putExtras(bundle);
+		startActivity(intent);
 	}
 }

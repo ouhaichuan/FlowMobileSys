@@ -90,7 +90,7 @@ public class ListAdapter extends BaseAdapter {
 		if (map.get("importance").equals("1")) {
 			convertView.setBackgroundColor(Color.RED);
 		} else if (map.get("importance").equals("2")) {
-			convertView.setBackgroundColor(Color.GREEN);
+			convertView.setBackgroundColor(Color.DKGRAY);
 		}
 		return convertView;
 	}
