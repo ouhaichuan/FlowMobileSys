@@ -72,7 +72,7 @@ public class TabMenu extends PopupWindow {
 	 * 自定义Adapter，TabMenu的每个分页的主体
 	 * 
 	 */
-	static public class MenuBodyAdapter extends BaseAdapter {
+	 static public class MenuBodyAdapter extends BaseAdapter {
 		private Context mContext;
 		private int[] resID;
 		private String[] strs;

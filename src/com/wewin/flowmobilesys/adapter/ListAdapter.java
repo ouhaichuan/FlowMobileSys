@@ -60,6 +60,10 @@ public class ListAdapter extends BaseAdapter {
 					R.layout.adapter_item, null);
 			holder.txt_missionid = (TextView) convertView
 					.findViewById(R.id.txt_missionid);
+			holder.txt_zrrName = (TextView) convertView
+					.findViewById(R.id.txt_zrrName);
+			holder.txt_ysrName = (TextView) convertView
+					.findViewById(R.id.txt_ysrName);
 			holder.txt_createUserName = (TextView) convertView
 					.findViewById(R.id.txt_createUserName);
 			holder.txt_Title = (TextView) convertView
@@ -80,6 +84,8 @@ public class ListAdapter extends BaseAdapter {
 
 		HashMap<String, String> map = list.get(position);
 		holder.txt_missionid.setText(map.get("missionId"));
+		holder.txt_zrrName.setText(map.get("zrrName"));
+		holder.txt_ysrName.setText(map.get("ysrName"));
 		holder.txt_createUserName.setText(map.get("createUserName"));
 		holder.txt_Title.setText(map.get("Title"));
 		holder.txt_beginTime.setText(map.get("beginTime"));
@@ -98,6 +104,8 @@ public class ListAdapter extends BaseAdapter {
 
 class ListViewHolder {
 	TextView txt_missionid;
+	TextView txt_zrrName;
+	TextView txt_ysrName;
 	TextView txt_createUserName;
 	TextView txt_Title;
 	TextView txt_beginTime;

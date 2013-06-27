@@ -28,7 +28,7 @@ import android.widget.TextView;
 public class DataChartActivity extends Activity {
 	private TextView dataChartTitle;
 	private List<String> list;
-	private String userId;
+	private String userId, rolename, department_name;
 	private DBUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler;
@@ -73,11 +73,23 @@ public class DataChartActivity extends Activity {
 	private void initView() {
 		// 得到全局用户ID
 		userId = ((GlobalApplication) getApplication()).getUserId();
+		// 得到全局用户角色名称
+		rolename = ((GlobalApplication) getApplication()).getRolename();
+		// 得到全局用户部门名称
+		department_name = ((GlobalApplication) getApplication())
+				.getDepartment_name();
 
 		dbUtil = new DBUtil();
 		handler = new Handler();
 		dataChartTitle = (TextView) findViewById(R.id.dataChartTitle);
-		dataChartTitle.setText("数据总概");// 设置标题栏
+		if (rolename.equals("普通员工") || rolename.equals("主管"))
+			dataChartTitle.setText("个人数据总概");// 设置标题栏
+		else if (rolename.equals("部门经理"))
+			dataChartTitle.setText(department_name + "数据总概");// 设置标题栏
+		else if (rolename.equals("副总经理") || rolename.equals("总经理"))
+			dataChartTitle.setText("总体数据总概");// 设置标题栏
+		else
+			dataChartTitle.setText("个人数据总概");// 设置标题栏
 
 		mRenderer.setZoomButtonsVisible(true);
 		mRenderer.setStartAngle(180);
@@ -102,7 +114,8 @@ public class DataChartActivity extends Activity {
 			@Override
 			public void run() {
 				// 调用webservice查询，统计信息
-				list = dbUtil.doFindChartData(userId);
+				list = dbUtil
+						.doFindChartData(userId, rolename, department_name);
 
 				mSeries.add("完成 ", Double.parseDouble(list.get(0)));
 				SimpleSeriesRenderer renderer = new SimpleSeriesRenderer();

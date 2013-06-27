@@ -31,9 +31,11 @@ public class MainActivity extends Activity {
 	private TextView title;// 标题栏
 	private int[] imageRes = { R.drawable.tasklist, R.drawable.watch,
 			R.drawable.settings, R.drawable.datachart };
-	private String[] itemName = { "我的任务", "我的关注", "可见任务", "数据总概" };
+	private String[] itemName = new String[4];
+
 	private long exitTime = 0;// 退出倒计时
 	private Button loginother_btn, exit_btn;
+	private String rolename = "";
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,21 @@ public class MainActivity extends Activity {
 		mGridView = (GridView) findViewById(R.id.MenuGridView);
 		title = (TextView) findViewById(R.id.main_tilte);
 		title.setText("重庆移动网络部项目管理平台");
+
+		// 得到全局用户角色名称
+		rolename = ((GlobalApplication) getApplication()).getRolename();
+
+		itemName[0] = "我的任务";
+		itemName[1] = "我的关注";
+		if (rolename.equals("普通员工") || rolename.equals("主管"))
+			itemName[2] = "可见任务";
+		else if (rolename.equals("部门经理"))
+			itemName[2] = "部门任务";
+		else if (rolename.equals("副总经理") || rolename.equals("总经理"))
+			itemName[2] = "所有任务";
+		else
+			itemName[2] = "可见任务";
+		itemName[3] = "数据总概";
 
 		List<HashMap<String, Object>> data = new ArrayList<HashMap<String, Object>>();
 		int length = imageRes.length;

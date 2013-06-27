@@ -36,10 +36,11 @@ import android.widget.Toast;
  */
 public class TaskDetailedActivity extends Activity {
 	private TextView detailedTitle;
-	private String missionId;
+	private String missionId, currentMissionId;
 	private String canSee = "";
+	private String auditorcompleteFlag;
 	int updownFlag = 0;// 点击上一条或者下一条标记0,上；1下
-	private String userid;
+	private String userid, username, rolename, department_name;
 	private String next_id;// 下一条
 	private String for_id;// 上一条
 	private int taskFlag;// 1我的关注，2我的任务，3可见任务
@@ -74,6 +75,14 @@ public class TaskDetailedActivity extends Activity {
 		Intent intent = getIntent();
 		// 得到全局用户ID
 		userid = ((GlobalApplication) getApplication()).getUserId();
+		// 得到全局用户名称
+		username = ((GlobalApplication) getApplication()).getUserName();
+		// 得到全局用户ID
+		rolename = ((GlobalApplication) getApplication()).getRolename();
+		// 得到全局用户ID
+		department_name = ((GlobalApplication) getApplication())
+				.getDepartment_name();
+
 		missionId = intent.getStringExtra("missionId");
 		taskFlag = intent.getIntExtra("taskFlag", 0);
 		canSee = intent.getStringExtra("canSee");
@@ -104,7 +113,6 @@ public class TaskDetailedActivity extends Activity {
 		txt_task_counts = (TextView) findViewById(R.id.txt_task_counts);
 
 		initTouchListener();// 绑定触屏滑动事件
-		initTitleMenu();// 初始化顶部菜单
 		setViewData();// 查询页面要显示的数据
 	}
 
@@ -139,6 +147,30 @@ public class TaskDetailedActivity extends Activity {
 				.addAction(new ActionItem(this, "下一条", R.drawable.next_mini_2));
 		titlePopup.addAction(new ActionItem(this, "上一条",
 				R.drawable.return_mini_2));
+
+		if (txt_response_person.getText().toString().equals(username)
+				&& taskFlag == 2
+				&& (txt_task_status.getText().toString().equals("进行中") || txt_task_status
+						.getText().toString().equals("即将超时"))) {// 我的任务中的自主式任务
+			titlePopup.addAction(new ActionItem(this, "完成",
+					R.drawable.complete_mini_2));
+			auditorcompleteFlag = "complete";
+		} else if (txt_task_yanshou.getText().toString().equals(username)
+				&& taskFlag == 2
+				&& txt_task_status.getText().toString().equals("提交待审")) {// 我的任务中的派发式任务
+			titlePopup.addAction(new ActionItem(this, "审核",
+					R.drawable.audit_mini_2));
+			auditorcompleteFlag = "audit";
+		} else if (txt_task_yanshou.getText().toString().equals(username)
+				&& taskFlag == 2
+				&& (txt_task_status.getText().toString().equals("已完成")
+						|| txt_task_status.getText().toString().equals("超时完成") || txt_task_status
+						.getText().toString().equals("超时"))) {
+			titlePopup.addAction(new ActionItem(this, "重审",
+					R.drawable.reaudit_mini_2));
+			auditorcompleteFlag = "reaudit";
+		} else {
+		}
 	}
 
 	/**
@@ -150,6 +182,7 @@ public class TaskDetailedActivity extends Activity {
 	class TitleButtnOnclickLisenter implements OnClickListener {
 		@Override
 		public void onClick(View v) {
+			initTitleMenu();
 			titlePopup.show(v);
 		}
 	};
@@ -211,11 +244,126 @@ public class TaskDetailedActivity extends Activity {
 			case 3:// 上一条
 				doGotoForMissionDetailed();
 				break;
+			case 4:// 完成或者审核
+				goToAuditOrCompleteWindow();
+				break;
 			default:
 				break;
 			}
 			titlePopup.dismiss();
 		}
+	}
+
+	/**
+	 * 审核或者完成操作
+	 * 
+	 * @date 2013-6-26
+	 */
+	public void goToAuditOrCompleteWindow() {
+		if (auditorcompleteFlag.equals("complete")) {// 自主式，完成操作
+			doCompleteShowDialog();
+		} else if (auditorcompleteFlag.equals("audit")) {// 派发式，审批操作
+			doAuditShowDialog("审核");
+		} else if (auditorcompleteFlag.equals("reaudit")) {
+			doAuditShowDialog("重新审核");
+		}
+	}
+
+	/**
+	 * 审核Dialog
+	 * 
+	 * @date 2013-6-5
+	 */
+	public void doAuditShowDialog(String str) {
+		Dialog alertDialog = new AlertDialog.Builder(this).setTitle("提示")
+				.setMessage("你确定" + str + "该任务吗？").setIcon(R.drawable.warning)
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						doAuditReq();
+					}
+				})
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				}).create();
+		alertDialog.show();
+	}
+
+	/**
+	 * 访问审核任务webservice
+	 * 
+	 * @date 2013-6-26
+	 */
+	public void doAuditReq() {
+		if (mDialog != null) {
+			mDialog.dismiss();
+			mDialog = null;
+		}
+		mDialog = DialogFactory.creatRequestDialog(TaskDetailedActivity.this,
+				"正在重新读取任务...");
+		mDialog.show();
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				dbUtil.doAuditTaskReq(missionId, userid);// 审批任务webservice
+				goToTaskListActivity(taskFlag);
+				// 销毁窗口
+				mDialog.dismiss();
+			}
+		}).start();
+	}
+
+	/**
+	 * 完成Dialog
+	 * 
+	 * @date 2013-6-5
+	 */
+	public void doCompleteShowDialog() {
+		Dialog alertDialog = new AlertDialog.Builder(this).setTitle("提示")
+				.setMessage("您确定提交该条任务吗？").setIcon(R.drawable.warning)
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						doCompleteReq();
+					}
+				})
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				}).create();
+		alertDialog.show();
+	}
+
+	/**
+	 * 访问完成任务webservice
+	 * 
+	 * @date 2013-6-26
+	 */
+	public void doCompleteReq() {
+		if (mDialog != null) {
+			mDialog.dismiss();
+			mDialog = null;
+		}
+		mDialog = DialogFactory.creatRequestDialog(TaskDetailedActivity.this,
+				"正在重新读取任务...");
+		mDialog.show();
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				dbUtil.doCompleteTaskReq(missionId, userid);// 完成任务webservice
+				// 跳转到我的任务页面
+				goToTaskListActivity(taskFlag);
+				// 销毁窗口
+				mDialog.dismiss();
+			}
+		}).start();
 	}
 
 	/**
@@ -404,6 +552,7 @@ public class TaskDetailedActivity extends Activity {
 	 */
 	public void doGotoNextMissionDetailed() {
 		updownFlag = 1;
+		currentMissionId = missionId;// 保存当前missionid
 		missionId = next_id;
 		setViewData();// 重新加载数据
 	}
@@ -415,6 +564,7 @@ public class TaskDetailedActivity extends Activity {
 	 */
 	public void doGotoForMissionDetailed() {
 		updownFlag = 0;
+		currentMissionId = missionId;// 保存当前missionid
 		missionId = for_id;
 		setViewData();// 重新加载数据
 	}
@@ -462,7 +612,7 @@ public class TaskDetailedActivity extends Activity {
 					break;
 				case 3:// 可见任务
 					list = dbUtil.selectCanSeeMissionDetailedInfo(missionId,
-							userid);
+							userid, rolename, department_name);
 					break;
 				default:
 					list = new ArrayList<String>();
@@ -509,6 +659,7 @@ public class TaskDetailedActivity extends Activity {
 					next_id = list.get(15).toString();
 					for_id = list.get(16).toString();
 				} else {
+					missionId = currentMissionId;// 重置为当前missionid
 					switch (updownFlag) {
 					case 0:
 						Toast.makeText(getApplicationContext(), "已经到顶了", 0)

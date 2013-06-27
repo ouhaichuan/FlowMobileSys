@@ -36,14 +36,17 @@ public class TaskListActivity extends Activity {
 	private Handler handler;
 	private ListAdapter adapter;
 	private int taskFlag = 0;
-	private String userId = "";
+	private String userId = "", userName = "", rolename = "",
+			department_name = "";
 	private String missionId = "";
 	private String intent_missionId;
 	private String canSee = "";
 	private String datachart_index = "";
+	private String task_status = "", zrrName = "", ysrName = "";
 	private List<HashMap<String, String>> list;
 	TabMenu.MenuBodyAdapter bodyAdapter;
 	TabMenu tabMenu;
+	private String auditorcompleteFlag = "";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +65,13 @@ public class TaskListActivity extends Activity {
 
 		// 得到全局用户ID
 		userId = ((GlobalApplication) getApplication()).getUserId();
+		// 用户名
+		userName = ((GlobalApplication) getApplication()).getUserName();
+		// 得到全局用户角色名称
+		rolename = ((GlobalApplication) getApplication()).getRolename();
+		// 得到全局用户部门名称
+		department_name = ((GlobalApplication) getApplication())
+				.getDepartment_name();
 
 		Intent intent = getIntent();
 		taskFlag = intent.getIntExtra("taskFlag", 0);
@@ -120,14 +130,15 @@ public class TaskListActivity extends Activity {
 					list = dbUtil.selectMyMissionInfo(userId);
 					break;
 				case 3:// 可见任务
-					list = dbUtil.selectCanSeeMissionInfo(userId);
+					list = dbUtil.selectCanSeeMissionInfo(userId, rolename,
+							department_name);
 					break;
 				case 4:// 子任务
 					list = dbUtil.selectChildMissionInfo(intent_missionId);
 					break;
 				case 5:// DataChart列表
 					list = dbUtil.selectChartMissionInfo(userId,
-							datachart_index);
+							datachart_index, rolename, department_name);
 					break;
 				default:
 					list = new ArrayList<HashMap<String, String>>();
@@ -157,6 +168,17 @@ public class TaskListActivity extends Activity {
 			// 得到是否已关注标记
 			canSee = ((TextView) view.findViewById(R.id.txt_counts)).getText()
 					.toString();
+			// 任务状态
+			task_status = ((TextView) view.findViewById(R.id.txt_status))
+					.getText().toString();
+			// 责任人
+			zrrName = ((TextView) view.findViewById(R.id.txt_zrrName))
+					.getText().toString();
+			// 验收人
+			ysrName = ((TextView) view.findViewById(R.id.txt_ysrName))
+					.getText().toString();
+
+			reInitTabMenu();// 根据missionType重新构造弹出菜单
 
 			int[] positions = new int[2];
 			view.getLocationInWindow(positions);
@@ -166,6 +188,63 @@ public class TaskListActivity extends Activity {
 						positions[1]);
 			}
 		}
+	}
+
+	/**
+	 * 重新构造弹出菜单
+	 * 
+	 * @date 2013-6-26
+	 */
+	public void reInitTabMenu() {
+		if (zrrName.equals(userName) && taskFlag == 2
+				&& (task_status.equals("进行中") || task_status.equals("即将超时"))) {
+			bodyAdapter = new TabMenu.MenuBodyAdapter(TaskListActivity.this,
+					new int[] { R.drawable.menu2, R.drawable.write,
+							R.drawable.complete_mini }, new String[] { "任务明细",
+							"填报完成情况", "完成" });
+			auditorcompleteFlag = "complete";
+		} else if (ysrName.equals(userName) && taskFlag == 2
+				&& task_status.equals("提交待审")) {
+			bodyAdapter = new TabMenu.MenuBodyAdapter(TaskListActivity.this,
+					new int[] { R.drawable.menu2, R.drawable.write,
+							R.drawable.audit_mini }, new String[] { "任务明细",
+							"填报完成情况", "审核" });
+			auditorcompleteFlag = "audit";
+		} else if (ysrName.equals(userName)
+				&& taskFlag == 2
+				&& (task_status.equals("已完成") || task_status.equals("超时完成") || task_status
+						.equals("超时"))) {
+			bodyAdapter = new TabMenu.MenuBodyAdapter(TaskListActivity.this,
+					new int[] { R.drawable.menu2, R.drawable.write,
+							R.drawable.reaudit_mini }, new String[] { "任务明细",
+							"填报完成情况", "重审" });
+			auditorcompleteFlag = "reaudit";
+		} else {
+			/**
+			 * 设置弹出菜单图标
+			 */
+			switch (taskFlag) {
+			case 1:
+				bodyAdapter = new TabMenu.MenuBodyAdapter(this, new int[] {
+						R.drawable.menu2, R.drawable.cancelwatch_mini },
+						new String[] { "任务明细", "取消关注" });
+				break;
+			case 2:
+				bodyAdapter = new TabMenu.MenuBodyAdapter(this, new int[] {
+						R.drawable.menu2, R.drawable.write }, new String[] {
+						"任务明细", "填报完成情况" });
+				break;
+			case 3:
+				bodyAdapter = new TabMenu.MenuBodyAdapter(this, new int[] {
+						R.drawable.menu2, R.drawable.watch_mini },
+						new String[] { "任务明细", "关注任务" });
+				break;
+			}
+		}
+		tabMenu = new TabMenu(TaskListActivity.this, new BodyClickEvent(),
+				R.drawable.login_bg);// 出现与消失的动画
+		tabMenu.update();
+		tabMenu.SetBodyAdapter(bodyAdapter);
 	}
 
 	/**
@@ -186,7 +265,16 @@ public class TaskListActivity extends Activity {
 					taskTitle.setText("我的任务");
 					break;
 				case 3:
-					taskTitle.setText("可见任务");
+					if (rolename.equals("普通员工") || rolename.equals("主管")) {
+						taskTitle.setText("可见任务");
+					} else if (rolename.equals("部门经理")) {
+						taskTitle.setText(department_name + "任务");
+					} else if (rolename.equals("副总经理")
+							|| rolename.equals("总经理")) {
+						taskTitle.setText("所有任务");
+					} else {
+						taskTitle.setText("可见任务");
+					}
 					break;
 				case 4:
 					taskTitle.setText("子任务");
@@ -219,6 +307,9 @@ public class TaskListActivity extends Activity {
 				// 现在关注选项窗口
 				checkWitchWindow();
 				break;
+			case 2:// 审核或者完成操作
+				goToAuditOrCompleteWindow();
+				break;
 			default:
 				break;
 			}
@@ -241,6 +332,122 @@ public class TaskListActivity extends Activity {
 		intent.putExtras(bundle);
 		startActivity(intent);
 		finish();
+	}
+
+	/**
+	 * 审核或者完成操作
+	 * 
+	 * @date 2013-6-26
+	 */
+	public void goToAuditOrCompleteWindow() {
+		if (auditorcompleteFlag.equals("complete")) {// 完成操作
+			doCompleteShowDialog();
+		} else if (auditorcompleteFlag.equals("audit")) {// 审批操作
+			doAuditShowDialog("审核");
+		} else if (auditorcompleteFlag.equals("reaudit")) {// 重审操作
+			doAuditShowDialog("重新审核");
+		}
+	}
+
+	/**
+	 * 审核Dialog
+	 * 
+	 * @date 2013-6-5
+	 */
+	public void doAuditShowDialog(String str) {
+		Dialog alertDialog = new AlertDialog.Builder(this).setTitle("提示")
+				.setMessage("你确定" + str + "该任务吗？").setIcon(R.drawable.warning)
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						doAuditReq();
+					}
+				})
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				}).create();
+		alertDialog.show();
+	}
+
+	/**
+	 * 访问审核任务webservice
+	 * 
+	 * @date 2013-6-26
+	 */
+	public void doAuditReq() {
+		if (mDialog != null) {
+			mDialog.dismiss();
+			mDialog = null;
+		}
+		mDialog = DialogFactory.creatRequestDialog(TaskListActivity.this,
+				"正在重新读取任务...");
+		mDialog.show();
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				dbUtil.doAuditTaskReq(missionId, userId);// 审批任务webservice
+
+				list = dbUtil.selectMyMissionInfo(userId);// 重新读取我的任务
+				// 更新界面
+				updateDialog();
+				// 销毁窗口
+				mDialog.dismiss();
+			}
+		}).start();
+	}
+
+	/**
+	 * 完成Dialog
+	 * 
+	 * @date 2013-6-5
+	 */
+	public void doCompleteShowDialog() {
+		Dialog alertDialog = new AlertDialog.Builder(this).setTitle("提示")
+				.setMessage("您确定提交该条任务吗？").setIcon(R.drawable.warning)
+				.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						doCompleteReq();
+					}
+				})
+				.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						return;
+					}
+				}).create();
+		alertDialog.show();
+	}
+
+	/**
+	 * 访问完成任务webservice
+	 * 
+	 * @date 2013-6-26
+	 */
+	public void doCompleteReq() {
+		if (mDialog != null) {
+			mDialog.dismiss();
+			mDialog = null;
+		}
+		mDialog = DialogFactory.creatRequestDialog(TaskListActivity.this,
+				"正在重新读取任务...");
+		mDialog.show();
+
+		new Thread(new Runnable() {
+			@Override
+			public void run() {
+				dbUtil.doCompleteTaskReq(missionId, userId);// 完成任务webservice
+				list = dbUtil.selectMyMissionInfo(userId);// 重新读取我的任务
+				// 更新界面
+				updateDialog();
+				// 销毁窗口
+				mDialog.dismiss();
+			}
+		}).start();
 	}
 
 	/**
@@ -394,7 +601,8 @@ public class TaskListActivity extends Activity {
 			@Override
 			public void run() {
 				dbUtil.doAcessOkReq(userId, missionId);// 关注webservice
-				list = dbUtil.selectCanSeeMissionInfo(userId);// 重新读取可见任务
+				list = dbUtil.selectCanSeeMissionInfo(userId, rolename,
+						department_name);// 重新读取可见任务
 				// 更新界面
 				updateDialog();
 				// 销毁窗口

@@ -163,6 +163,13 @@ public class LoginActivity extends Activity implements OnClickListener {
 						.toString(), password.getText().toString());
 				// 设置用户ID保存全局变量
 				((GlobalApplication) getApplication()).setUserId(list.get(0));
+				// 设置用户角色名称保存全局变量
+				((GlobalApplication) getApplication()).setRolename(list.get(2));
+				// 设置用户部门名称保存全局变量
+				((GlobalApplication) getApplication()).setDepartment_name(list
+						.get(3));
+				// 设置用户名称
+				((GlobalApplication) getApplication()).setUserName(list.get(4));
 				result = list.get(1);// 验证结果
 				// 更新界面，并记住用户、密码
 				updateDialog();

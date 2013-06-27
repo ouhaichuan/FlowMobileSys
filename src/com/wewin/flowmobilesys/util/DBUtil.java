@@ -59,12 +59,17 @@ public class DBUtil {
 	 * @param userid
 	 * @return
 	 */
-	public List<String> doFindChartData(String userid) {
+	public List<String> doFindChartData(String userid, String rolename,
+			String department_name) {
 		arrayList.clear();
 		brrayList.clear();
 
 		arrayList.add("userid");
 		brrayList.add(userid);
+		arrayList.add("rolename");
+		brrayList.add(rolename);
+		arrayList.add("department_name");
+		brrayList.add(department_name);
 
 		crrayList = Soap.GetWebServre("doFindChartData", arrayList, brrayList);
 		return crrayList;
@@ -201,7 +206,7 @@ public class DBUtil {
 	 * @return
 	 */
 	public List<String> selectMyMissionDetailedInfo(String missionId,
-			String userid) {
+			String userId) {
 		arrayList.clear();
 		brrayList.clear();
 		crrayList.clear();
@@ -209,9 +214,9 @@ public class DBUtil {
 		// 传递任务编号
 		arrayList.add("id");
 		brrayList.add(missionId);
-		// 传递用户编号
+		// 传递用户ID
 		arrayList.add("userid");
-		brrayList.add(userid);
+		brrayList.add(userId);
 
 		crrayList = Soap.GetWebServre("selectMyMissionDetailedInfo", arrayList,
 				brrayList);
@@ -249,7 +254,7 @@ public class DBUtil {
 	 * @return
 	 */
 	public List<String> selectCanSeeMissionDetailedInfo(String missionId,
-			String userid) {
+			String userid, String rolename, String department_name) {
 		arrayList.clear();
 		brrayList.clear();
 		crrayList.clear();
@@ -260,6 +265,12 @@ public class DBUtil {
 		// 传递用户编号
 		arrayList.add("userid");
 		brrayList.add(userid);
+		// 传递角色名称
+		arrayList.add("rolename");
+		brrayList.add(rolename);
+		// 传递部门名称
+		arrayList.add("department_name");
+		brrayList.add(department_name);
 
 		crrayList = Soap.GetWebServre("selectCanSeeMissionDetailedInfo",
 				arrayList, brrayList);
@@ -286,7 +297,7 @@ public class DBUtil {
 		crrayList = Soap.GetWebServre("selectMyMissionInfo", arrayList,
 				brrayList);
 
-		for (int j = 0; j < crrayList.size(); j += 8) {
+		for (int j = 0; j < crrayList.size(); j += 10) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
 			hashMap.put("missionId", crrayList.get(j));
 			hashMap.put("createUserName", crrayList.get(j + 1));
@@ -309,7 +320,8 @@ public class DBUtil {
 
 			hashMap.put("importance", crrayList.get(j + 6));// 重要性
 			hashMap.put("counts", crrayList.get(j + 7));
-
+			hashMap.put("zrrName", crrayList.get(j + 8));// 责任人
+			hashMap.put("ysrName", crrayList.get(j + 9));// 验收人
 			list.add(hashMap);
 		}
 		return list;
@@ -320,7 +332,8 @@ public class DBUtil {
 	 * 
 	 * @return
 	 */
-	public List<HashMap<String, String>> selectCanSeeMissionInfo(String userId) {
+	public List<HashMap<String, String>> selectCanSeeMissionInfo(String userId,
+			String rolename, String department_name) {
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
 		arrayList.clear();
@@ -330,6 +343,12 @@ public class DBUtil {
 		// 传递用户编号
 		arrayList.add("id");
 		brrayList.add(userId);
+		// 传递角色名称
+		arrayList.add("rolename");
+		brrayList.add(rolename);
+		// 传递部门名称
+		arrayList.add("department_name");
+		brrayList.add(department_name);
 
 		crrayList = Soap.GetWebServre("selectCanSeeMissionInfo", arrayList,
 				brrayList);
@@ -574,6 +593,7 @@ public class DBUtil {
 	}
 
 	/**
+	 * 删除完成情况
 	 * 
 	 * @date 2013-6-24
 	 * @param report_id
@@ -590,6 +610,15 @@ public class DBUtil {
 		return crrayList;
 	}
 
+	/**
+	 * 添加完成情况
+	 * 
+	 * @date 2013-6-26
+	 * @param report_info
+	 * @param missionId
+	 * @param userId
+	 * @return
+	 */
 	public List<String> doAddReportReq(String report_info, String missionId,
 			String userId) {
 		arrayList.clear();
@@ -606,6 +635,13 @@ public class DBUtil {
 		return crrayList;
 	}
 
+	/**
+	 * 查询子任务
+	 * 
+	 * @date 2013-6-26
+	 * @param intent_missionId
+	 * @return
+	 */
 	public List<HashMap<String, String>> selectChildMissionInfo(
 			String intent_missionId) {
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
@@ -648,8 +684,16 @@ public class DBUtil {
 		return list;
 	}
 
+	/**
+	 * 查询datacart相关任务
+	 * 
+	 * @date 2013-6-26
+	 * @param userId
+	 * @param datachart_index
+	 * @return
+	 */
 	public List<HashMap<String, String>> selectChartMissionInfo(String userId,
-			String datachart_index) {
+			String datachart_index, String rolename, String department_name) {
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
 		arrayList.clear();
@@ -660,6 +704,10 @@ public class DBUtil {
 		brrayList.add(userId);
 		arrayList.add("datachart_index");
 		brrayList.add(datachart_index);
+		arrayList.add("rolename");
+		brrayList.add(rolename);
+		arrayList.add("department_name");
+		brrayList.add(department_name);
 
 		crrayList = Soap.GetWebServre("selectChartMissionInfo", arrayList,
 				brrayList);
@@ -691,5 +739,45 @@ public class DBUtil {
 			list.add(hashMap);
 		}
 		return list;
+	}
+
+	/**
+	 * 完成某个任务
+	 * 
+	 * @date 2013-6-26
+	 * @param missionId
+	 */
+	public List<String> doCompleteTaskReq(String missionId, String userId) {
+		arrayList.clear();
+		brrayList.clear();
+
+		arrayList.add("missionId");
+		brrayList.add(missionId);
+		arrayList.add("userId");
+		brrayList.add(userId);
+
+		crrayList = Soap
+				.GetWebServre("doCompleteTaskReq", arrayList, brrayList);
+		return crrayList;
+	}
+
+	/**
+	 * 审批任务
+	 * 
+	 * @date 2013-6-26
+	 * @param missionId
+	 * @param userId
+	 */
+	public List<String> doAuditTaskReq(String missionId, String userId) {
+		arrayList.clear();
+		brrayList.clear();
+
+		arrayList.add("missionId");
+		brrayList.add(missionId);
+		arrayList.add("userId");
+		brrayList.add(userId);
+
+		crrayList = Soap.GetWebServre("doAuditTaskReq", arrayList, brrayList);
+		return crrayList;
 	}
 }

@@ -23,11 +23,11 @@ public class HttpConnSoap {
 		// 2364是指端口号，即挂载到IIS上的时候开启的端口
 		// DbService.asmx是指提供服务的页面
 		// 测试地址
-		String ServerUrl = "http://www.wewin.com.cn:2364/DbService.asmx";
+		// String ServerUrl = "http://www.wewin.com.cn:2364/DbService.asmx";
 		// String ServerUrl =
 		// "http://218.206.25.36:12015/service/DbService.asmx";
 		// 外网地址
-		// String ServerUrl = "http://10.0.2.2:2364/DbService.asmx";
+		String ServerUrl = "http://10.0.2.2:2364/DbService.asmx";
 
 		// String soapAction="http://tempuri.org/LongUserId1";
 		String soapAction = "http://tempuri.org/" + methodName;
