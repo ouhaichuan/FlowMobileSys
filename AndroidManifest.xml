@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wewin.flowmobilesys"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.1" >
 
     <uses-sdk android:minSdkVersion="7" />
     <!-- 访问网络权限 -->
@@ -67,12 +67,12 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.wewin.flowmobilesys.car.CarMainActivity"
+            android:name=".car.CarMainActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
-            android:name="com.wewin.flowmobilesys.car.CarListActivity"
+            android:name=".car.CarListActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>

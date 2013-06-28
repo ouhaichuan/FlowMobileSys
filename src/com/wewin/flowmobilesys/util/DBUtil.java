@@ -183,14 +183,16 @@ public class DBUtil {
 			if ("1".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "进行中");
 			else if ("2".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "即将超时");
-			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "提交待审");
-			else if ("4".equals(crrayList.get(j + 5)))
+			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "已完成");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "删除待审");
 			else if ("5".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "超时完成");
+				hashMap.put("status", "即将超时");
 			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("7".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "超时");
 
 			hashMap.put("importance", crrayList.get(j + 6));// 重要性
@@ -308,14 +310,16 @@ public class DBUtil {
 			if ("1".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "进行中");
 			else if ("2".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "即将超时");
-			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "提交待审");
-			else if ("4".equals(crrayList.get(j + 5)))
+			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "已完成");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "删除待审");
 			else if ("5".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "超时完成");
+				hashMap.put("status", "即将超时");
 			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("7".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "超时");
 
 			hashMap.put("importance", crrayList.get(j + 6));// 重要性
@@ -364,14 +368,16 @@ public class DBUtil {
 			if ("1".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "进行中");
 			else if ("2".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "即将超时");
-			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "提交待审");
-			else if ("4".equals(crrayList.get(j + 5)))
+			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "已完成");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "删除待审");
 			else if ("5".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "超时完成");
+				hashMap.put("status", "即将超时");
 			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("7".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "超时");
 
 			hashMap.put("importance", crrayList.get(j + 6));// 重要性
@@ -666,14 +672,16 @@ public class DBUtil {
 			if ("1".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "进行中");
 			else if ("2".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "即将超时");
-			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "提交待审");
-			else if ("4".equals(crrayList.get(j + 5)))
+			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "已完成");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "删除待审");
 			else if ("5".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "超时完成");
+				hashMap.put("status", "即将超时");
 			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("7".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "超时");
 
 			hashMap.put("importance", crrayList.get(j + 6));// 重要性
@@ -723,14 +731,16 @@ public class DBUtil {
 			if ("1".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "进行中");
 			else if ("2".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "即将超时");
-			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "提交待审");
-			else if ("4".equals(crrayList.get(j + 5)))
+			else if ("3".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "已完成");
+			else if ("4".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "删除待审");
 			else if ("5".equals(crrayList.get(j + 5)))
-				hashMap.put("status", "超时完成");
+				hashMap.put("status", "即将超时");
 			else if ("6".equals(crrayList.get(j + 5)))
+				hashMap.put("status", "超时完成");
+			else if ("7".equals(crrayList.get(j + 5)))
 				hashMap.put("status", "超时");
 
 			hashMap.put("importance", crrayList.get(j + 6));// 重要性
