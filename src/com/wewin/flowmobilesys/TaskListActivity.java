@@ -6,7 +6,7 @@ import java.util.List;
 import com.wewin.flowmobilesys.GlobalApplication;
 import com.wewin.flowmobilesys.adapter.ListAdapter;
 import com.wewin.flowmobilesys.menu.TabMenu;
-import com.wewin.flowmobilesys.util.DBUtil;
+import com.wewin.flowmobilesys.util.WebServiceUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -31,7 +31,7 @@ import android.widget.TextView;
 public class TaskListActivity extends Activity {
 	private ListView listView;
 	private TextView taskTitle;
-	private DBUtil dbUtil;
+	private WebServiceUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler;
 	private ListAdapter adapter;
@@ -60,7 +60,7 @@ public class TaskListActivity extends Activity {
 		listView.setOnItemClickListener(new MyItemClickListhener());// 注册点击事件
 
 		taskTitle = (TextView) findViewById(R.id.taskTitle);
-		dbUtil = new DBUtil();
+		dbUtil = new WebServiceUtil();
 		handler = new Handler();
 
 		// 得到全局用户ID

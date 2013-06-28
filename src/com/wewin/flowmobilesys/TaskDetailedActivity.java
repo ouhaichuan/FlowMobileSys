@@ -6,7 +6,7 @@ import java.util.List;
 import com.wewin.flowmobilesys.adapter.OnGestureAndTouchAdapter;
 import com.wewin.flowmobilesys.menu.ActionItem;
 import com.wewin.flowmobilesys.menu.TitlePopup;
-import com.wewin.flowmobilesys.util.DBUtil;
+import com.wewin.flowmobilesys.util.WebServiceUtil;
 import com.wewin.flowmobilesys.util.FileUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -44,7 +44,7 @@ public class TaskDetailedActivity extends Activity {
 	private String next_id;// 下一条
 	private String for_id;// 上一条
 	private int taskFlag;// 1我的关注，2我的任务，3可见任务
-	private DBUtil dbUtil;
+	private WebServiceUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler;
 	private List<String> list;
@@ -86,7 +86,7 @@ public class TaskDetailedActivity extends Activity {
 		missionId = intent.getStringExtra("missionId");
 		taskFlag = intent.getIntExtra("taskFlag", 0);
 		canSee = intent.getStringExtra("canSee");
-		dbUtil = new DBUtil();
+		dbUtil = new WebServiceUtil();
 		handler = new Handler();
 
 		detailedTitle = (TextView) findViewById(R.id.detailedTitle);

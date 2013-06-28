@@ -1,7 +1,7 @@
 package com.wewin.flowmobilesys;
 
 import com.wewin.flowmobilesys.R;
-import com.wewin.flowmobilesys.util.DBUtil;
+import com.wewin.flowmobilesys.util.WebServiceUtil;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -28,7 +28,7 @@ public class ReportAddActivity extends Activity implements OnClickListener {
 	private EditText reportInfoTxt;
 	private Dialog mDialog = null;
 	public Handler mHandler;
-	private DBUtil dbUtil;
+	private WebServiceUtil dbUtil;
 	private String missionId, userId;
 	private String backFlag;
 
@@ -48,7 +48,7 @@ public class ReportAddActivity extends Activity implements OnClickListener {
 		mBtnRegister = (Button) findViewById(R.id.addreport_btn);
 		mBtnRegister.setOnClickListener(this);
 		reportInfoTxt = (EditText) findViewById(R.id.reportinfo);
-		dbUtil = new DBUtil();
+		dbUtil = new WebServiceUtil();
 
 		Intent intent = getIntent();
 		missionId = intent.getStringExtra("missionId");// 得到任务ID

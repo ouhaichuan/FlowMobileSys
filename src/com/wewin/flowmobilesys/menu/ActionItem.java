@@ -3,6 +3,12 @@ package com.wewin.flowmobilesys.menu;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 
+/**
+ * TitlePoppupMenuµÄÑ¡Ïî
+ * 
+ * @author HCOU
+ * @date 2013-6-28
+ */
 public class ActionItem {
 	public Drawable mDrawable;
 	public CharSequence mTitle;

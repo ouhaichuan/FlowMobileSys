@@ -12,7 +12,7 @@ import com.wewin.flowmobilesys.http.HttpConnSoap;
  * @author HCOU
  * @time 2013.05.27 17:25:00
  */
-public class DBUtil {
+public class WebServiceUtil {
 	private ArrayList<String> arrayList = new ArrayList<String>();
 	private ArrayList<String> brrayList = new ArrayList<String>();
 	private ArrayList<String> crrayList = new ArrayList<String>();
@@ -30,7 +30,7 @@ public class DBUtil {
 		brrayList.add(userid);
 		brrayList.add(password);
 
-		crrayList = Soap.GetWebServre("doLogin", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doLogin", arrayList, brrayList);
 		return crrayList;
 	}
 
@@ -48,7 +48,7 @@ public class DBUtil {
 		arrayList.add("userid");
 		brrayList.add(userid);
 
-		crrayList = Soap.GetWebServre("doFindPassWord", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doFindPassWord", arrayList, brrayList);
 		return crrayList;
 	}
 
@@ -71,7 +71,7 @@ public class DBUtil {
 		arrayList.add("department_name");
 		brrayList.add(department_name);
 
-		crrayList = Soap.GetWebServre("doFindChartData", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doFindChartData", arrayList, brrayList);
 		return crrayList;
 	}
 
@@ -92,7 +92,8 @@ public class DBUtil {
 		brrayList.add(userid);
 		brrayList.add(missionid);
 
-		crrayList = Soap.GetWebServre("doAcessCancelReq", arrayList, brrayList);
+		crrayList = Soap
+				.GetWebService("doAcessCancelReq", arrayList, brrayList);
 		return crrayList;
 	}
 
@@ -110,7 +111,7 @@ public class DBUtil {
 		arrayList.add("missionid");
 		brrayList.add(missionid);
 
-		crrayList = Soap.GetWebServre("doDeleteReq", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doDeleteReq", arrayList, brrayList);
 		return crrayList;
 	}
 
@@ -129,8 +130,8 @@ public class DBUtil {
 		arrayList.add("app_id");
 		brrayList.add(app_id);
 
-		crrayList = Soap
-				.GetWebServre("doDeleteCarAppReq", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doDeleteCarAppReq", arrayList,
+				brrayList);
 		return crrayList;
 	}
 
@@ -150,7 +151,7 @@ public class DBUtil {
 		brrayList.add(userId);
 		brrayList.add(missionId);
 
-		crrayList = Soap.GetWebServre("doAcessOkReq", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doAcessOkReq", arrayList, brrayList);
 		return crrayList;
 	}
 
@@ -170,7 +171,7 @@ public class DBUtil {
 		arrayList.add("id");
 		brrayList.add(userId);
 
-		crrayList = Soap.GetWebServre("selectWatchMissionInfo", arrayList,
+		crrayList = Soap.GetWebService("selectWatchMissionInfo", arrayList,
 				brrayList);
 		for (int j = 0; j < crrayList.size(); j += 8) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
@@ -220,8 +221,8 @@ public class DBUtil {
 		arrayList.add("userid");
 		brrayList.add(userId);
 
-		crrayList = Soap.GetWebServre("selectMyMissionDetailedInfo", arrayList,
-				brrayList);
+		crrayList = Soap.GetWebService("selectMyMissionDetailedInfo",
+				arrayList, brrayList);
 
 		return crrayList;
 	}
@@ -244,7 +245,7 @@ public class DBUtil {
 		arrayList.add("userid");
 		brrayList.add(userid);
 
-		crrayList = Soap.GetWebServre("selectWatchMissionDetailedInfo",
+		crrayList = Soap.GetWebService("selectWatchMissionDetailedInfo",
 				arrayList, brrayList);
 
 		return crrayList;
@@ -274,7 +275,7 @@ public class DBUtil {
 		arrayList.add("department_name");
 		brrayList.add(department_name);
 
-		crrayList = Soap.GetWebServre("selectCanSeeMissionDetailedInfo",
+		crrayList = Soap.GetWebService("selectCanSeeMissionDetailedInfo",
 				arrayList, brrayList);
 
 		return crrayList;
@@ -296,7 +297,7 @@ public class DBUtil {
 		arrayList.add("id");
 		brrayList.add(userId);
 
-		crrayList = Soap.GetWebServre("selectMyMissionInfo", arrayList,
+		crrayList = Soap.GetWebService("selectMyMissionInfo", arrayList,
 				brrayList);
 
 		for (int j = 0; j < crrayList.size(); j += 10) {
@@ -354,7 +355,7 @@ public class DBUtil {
 		arrayList.add("department_name");
 		brrayList.add(department_name);
 
-		crrayList = Soap.GetWebServre("selectCanSeeMissionInfo", arrayList,
+		crrayList = Soap.GetWebService("selectCanSeeMissionInfo", arrayList,
 				brrayList);
 
 		for (int j = 0; j < crrayList.size(); j += 8) {
@@ -408,7 +409,7 @@ public class DBUtil {
 		arrayList.add("userId");
 		brrayList.add(userId);
 
-		crrayList = Soap.GetWebServre("selectMyCarAppInfo", arrayList,
+		crrayList = Soap.GetWebService("selectMyCarAppInfo", arrayList,
 				brrayList);
 
 		for (int j = 0; j < crrayList.size(); j += 7) {
@@ -444,7 +445,7 @@ public class DBUtil {
 		arrayList.add("app_id");
 		brrayList.add(app_id);
 
-		crrayList = Soap.GetWebServre("selectCarAppDetailedInfo", arrayList,
+		crrayList = Soap.GetWebService("selectCarAppDetailedInfo", arrayList,
 				brrayList);
 
 		return crrayList;
@@ -492,8 +493,8 @@ public class DBUtil {
 		arrayList.add("remarks");
 		brrayList.add(remarks);
 
-		crrayList = Soap
-				.GetWebServre("doUpdateCarAppReq", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doUpdateCarAppReq", arrayList,
+				brrayList);
 
 		return crrayList;
 	}
@@ -509,7 +510,7 @@ public class DBUtil {
 		brrayList.clear();
 		crrayList.clear();
 
-		crrayList = Soap.GetWebServre("selectAllCars", arrayList, brrayList);
+		crrayList = Soap.GetWebService("selectAllCars", arrayList, brrayList);
 
 		return crrayList;
 	}
@@ -561,7 +562,7 @@ public class DBUtil {
 		arrayList.add("remarks");
 		brrayList.add(remarks);
 
-		crrayList = Soap.GetWebServre("doAddCarAppReq", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doAddCarAppReq", arrayList, brrayList);
 
 		return crrayList;
 	}
@@ -585,7 +586,8 @@ public class DBUtil {
 		arrayList.add("missionId");
 		brrayList.add(missionId);
 
-		crrayList = Soap.GetWebServre("selectReportInfo", arrayList, brrayList);
+		crrayList = Soap
+				.GetWebService("selectReportInfo", arrayList, brrayList);
 
 		for (int j = 0; j < crrayList.size(); j += 3) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
@@ -611,8 +613,8 @@ public class DBUtil {
 		arrayList.add("report_id");
 		brrayList.add(report_id);
 
-		crrayList = Soap
-				.GetWebServre("doDeleteReportReq", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doDeleteReportReq", arrayList,
+				brrayList);
 		return crrayList;
 	}
 
@@ -637,7 +639,7 @@ public class DBUtil {
 		arrayList.add("userId");
 		brrayList.add(userId);
 
-		crrayList = Soap.GetWebServre("doAddReportReq", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doAddReportReq", arrayList, brrayList);
 		return crrayList;
 	}
 
@@ -658,7 +660,7 @@ public class DBUtil {
 		arrayList.add("intent_missionId");
 		brrayList.add(intent_missionId);
 
-		crrayList = Soap.GetWebServre("selectChildMissionInfo", arrayList,
+		crrayList = Soap.GetWebService("selectChildMissionInfo", arrayList,
 				brrayList);
 
 		for (int j = 0; j < crrayList.size(); j += 8) {
@@ -717,7 +719,7 @@ public class DBUtil {
 		arrayList.add("department_name");
 		brrayList.add(department_name);
 
-		crrayList = Soap.GetWebServre("selectChartMissionInfo", arrayList,
+		crrayList = Soap.GetWebService("selectChartMissionInfo", arrayList,
 				brrayList);
 
 		for (int j = 0; j < crrayList.size(); j += 8) {
@@ -766,8 +768,8 @@ public class DBUtil {
 		arrayList.add("userId");
 		brrayList.add(userId);
 
-		crrayList = Soap
-				.GetWebServre("doCompleteTaskReq", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doCompleteTaskReq", arrayList,
+				brrayList);
 		return crrayList;
 	}
 
@@ -787,7 +789,7 @@ public class DBUtil {
 		arrayList.add("userId");
 		brrayList.add(userId);
 
-		crrayList = Soap.GetWebServre("doAuditTaskReq", arrayList, brrayList);
+		crrayList = Soap.GetWebService("doAuditTaskReq", arrayList, brrayList);
 		return crrayList;
 	}
 }

@@ -17,6 +17,12 @@ import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+/**
+ * 标题栏的弹出菜单
+ * 
+ * @author HCOU
+ * @date 2013-6-28
+ */
 public class TitlePopup extends PopupWindow {
 	public static final int TITLE_LEFT = 0;
 	public static final int TITLE_RIGHT = 1;

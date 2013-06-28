@@ -7,7 +7,7 @@ import org.achartengine.model.CategorySeries;
 import org.achartengine.model.SeriesSelection;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
-import com.wewin.flowmobilesys.util.DBUtil;
+import com.wewin.flowmobilesys.util.WebServiceUtil;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -29,7 +29,7 @@ public class DataChartActivity extends Activity {
 	private TextView dataChartTitle;
 	private List<String> list;
 	private String userId, rolename, department_name;
-	private DBUtil dbUtil;
+	private WebServiceUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler;
 
@@ -79,7 +79,7 @@ public class DataChartActivity extends Activity {
 		department_name = ((GlobalApplication) getApplication())
 				.getDepartment_name();
 
-		dbUtil = new DBUtil();
+		dbUtil = new WebServiceUtil();
 		handler = new Handler();
 		dataChartTitle = (TextView) findViewById(R.id.dataChartTitle);
 		if (rolename.equals("普通员工") || rolename.equals("主管"))

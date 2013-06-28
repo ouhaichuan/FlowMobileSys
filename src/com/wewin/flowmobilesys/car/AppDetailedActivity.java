@@ -9,7 +9,7 @@ import com.wewin.flowmobilesys.R;
 import com.wewin.flowmobilesys.adapter.OptionsAdapter;
 import com.wewin.flowmobilesys.menu.ActionItem;
 import com.wewin.flowmobilesys.menu.TitlePopup;
-import com.wewin.flowmobilesys.util.DBUtil;
+import com.wewin.flowmobilesys.util.WebServiceUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -44,7 +44,7 @@ import android.widget.Toast;
 public class AppDetailedActivity extends Activity implements Callback {
 	private TextView detailedTitle;
 	private String app_id, car_id, userId;
-	private DBUtil dbUtil;
+	private WebServiceUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler, showBoxHandler;
 	private List<String> list;
@@ -97,7 +97,7 @@ public class AppDetailedActivity extends Activity implements Callback {
 		// 得到全局用户ID
 		userId = ((GlobalApplication) getApplication()).getUserId();
 
-		dbUtil = new DBUtil();
+		dbUtil = new WebServiceUtil();
 		handler = new Handler();
 
 		detailedTitle = (TextView) findViewById(R.id.detailedTitle);
@@ -141,7 +141,7 @@ public class AppDetailedActivity extends Activity implements Callback {
 		case 1:// Add
 			control_btn.setVisibility(View.GONE);
 			addBtnlayout.setVisibility(View.VISIBLE);
-			carlist_layout.setVisibility(View.GONE);// 隐藏车辆选择框 //TODO
+			carlist_layout.setVisibility(View.GONE);// 隐藏车辆选择框
 
 			datapicker_btn1.setVisibility(View.VISIBLE);
 			datapicker_btn2.setVisibility(View.VISIBLE);
@@ -368,12 +368,11 @@ public class AppDetailedActivity extends Activity implements Callback {
 			@Override
 			public void run() {
 				dbUtil.doAddCarAppReq(userId, "  ", "0", txt_begintime
-						.getText()// TODO
-						.toString(), txt_endtime.getText().toString(),
-						txt_personnum.getText().toString(), txt_reason
-								.getText().toString(), txt_destination
-								.getText().toString(), txt_remark.getText()
-								.toString());// 添加申请webservice
+						.getText().toString(),
+						txt_endtime.getText().toString(), txt_personnum
+								.getText().toString(), txt_reason.getText()
+								.toString(), txt_destination.getText()
+								.toString(), txt_remark.getText().toString());// 添加申请webservice
 				// 跳转回申请页面
 				goToCarAppListActivity();
 				// 销毁窗口
@@ -526,7 +525,7 @@ public class AppDetailedActivity extends Activity implements Callback {
 	/**
 	 * 时间按钮响应事件
 	 * 
-	 * @author HCOu
+	 * @author HCOU
 	 * @date 2013-6-18
 	 */
 	class DatePickerButtnOnclickLisenter implements OnClickListener {

@@ -1,7 +1,7 @@
 package com.wewin.flowmobilesys;
 
 import com.wewin.flowmobilesys.R;
-import com.wewin.flowmobilesys.util.DBUtil;
+import com.wewin.flowmobilesys.util.WebServiceUtil;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
@@ -93,8 +93,8 @@ public class Forgot_PasswordActivity extends Activity implements
 			@Override
 			public void run() {
 				// 找回密码
-				flag = new DBUtil().doFindPassWord(userid.getText().toString())
-						.get(0);
+				flag = new WebServiceUtil().doFindPassWord(
+						userid.getText().toString()).get(0);
 				// 更新界面
 				updateDialog();
 				// 销毁窗口
@@ -115,8 +115,7 @@ public class Forgot_PasswordActivity extends Activity implements
 				// 跳转回登录界面
 				if (flag.equals("1")) {
 					Toast.makeText(Forgot_PasswordActivity.this,
-							"密码找回成功，请查收短信，\n并尽快登录Web系统重置", Toast.LENGTH_SHORT)
-							.show();
+							"密码找回成功，请查收短信，\n并尽快登录Web系统重置", 0).show();
 					goBackLoginActivity();
 				} else {
 					Toast.makeText(Forgot_PasswordActivity.this, "用户不存在", 0)

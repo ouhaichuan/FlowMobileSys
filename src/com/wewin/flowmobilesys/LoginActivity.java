@@ -4,7 +4,7 @@ import java.util.List;
 import com.wewin.flowmobilesys.R;
 import com.wewin.flowmobilesys.GlobalApplication;
 import com.wewin.flowmobilesys.car.CarMainActivity;
-import com.wewin.flowmobilesys.util.DBUtil;
+import com.wewin.flowmobilesys.util.WebServiceUtil;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -159,7 +159,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 			@Override
 			public void run() {
 				// 验证数据
-				List<String> list = new DBUtil().doLogin(accout.getText()
+				List<String> list = new WebServiceUtil().doLogin(accout.getText()
 						.toString(), password.getText().toString());
 				// 设置用户ID保存全局变量
 				((GlobalApplication) getApplication()).setUserId(list.get(0));

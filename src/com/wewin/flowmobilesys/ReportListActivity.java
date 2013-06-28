@@ -5,7 +5,7 @@ import java.util.List;
 import com.wewin.flowmobilesys.DialogFactory;
 import com.wewin.flowmobilesys.GlobalApplication;
 import com.wewin.flowmobilesys.R;
-import com.wewin.flowmobilesys.util.DBUtil;
+import com.wewin.flowmobilesys.util.WebServiceUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -33,7 +33,7 @@ import android.widget.TextView;
 public class ReportListActivity extends Activity {
 	private ListView listView;
 	private TextView listTitle;
-	private DBUtil dbUtil;
+	private WebServiceUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler;
 	private SimpleAdapter adapter;
@@ -61,7 +61,7 @@ public class ReportListActivity extends Activity {
 		listView.setOnItemLongClickListener(new ItemLongClickListhener());// 长按事件
 
 		listTitle = (TextView) findViewById(R.id.reportTitle);
-		dbUtil = new DBUtil();
+		dbUtil = new WebServiceUtil();
 		handler = new Handler();
 
 		/**

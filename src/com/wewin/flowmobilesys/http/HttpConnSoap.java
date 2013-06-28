@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @time 2013.05.27 17:25:00
  */
 public class HttpConnSoap {
-	public ArrayList<String> GetWebServre(String methodName,
+	public ArrayList<String> GetWebService(String methodName,
 			ArrayList<String> Parameters, ArrayList<String> ParValues) {
 		ArrayList<String> Values = new ArrayList<String>();
 

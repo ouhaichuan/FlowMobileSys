@@ -6,7 +6,7 @@ import com.wewin.flowmobilesys.DialogFactory;
 import com.wewin.flowmobilesys.GlobalApplication;
 import com.wewin.flowmobilesys.R;
 import com.wewin.flowmobilesys.menu.TabMenu;
-import com.wewin.flowmobilesys.util.DBUtil;
+import com.wewin.flowmobilesys.util.WebServiceUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
@@ -35,7 +35,7 @@ import android.widget.TextView;
 public class CarListActivity extends Activity {
 	private ListView listView;
 	private TextView listTitle;
-	private DBUtil dbUtil;
+	private WebServiceUtil dbUtil;
 	private Dialog mDialog;
 	private Handler handler;
 	private SimpleAdapter adapter;
@@ -58,7 +58,7 @@ public class CarListActivity extends Activity {
 		listView.setOnItemClickListener(new MyItemClickListhener());// ×¢²áµã»÷ÊÂ¼þ
 
 		listTitle = (TextView) findViewById(R.id.carlistTitle);
-		dbUtil = new DBUtil();
+		dbUtil = new WebServiceUtil();
 		handler = new Handler();
 
 		/**
