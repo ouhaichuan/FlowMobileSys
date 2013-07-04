@@ -82,7 +82,7 @@ public class HttpConnSoap {
 			String MonthsName) throws IOException {
 		StringBuffer out = new StringBuffer();
 		String s1 = "";
-		byte[] b = new byte[4096];
+		byte[] b = new byte[1024];
 		ArrayList<String> Values = new ArrayList<String>();
 		Values.clear();
 
@@ -91,7 +91,7 @@ public class HttpConnSoap {
 			out.append(s1);
 		}
 
-		String[] s13 = s1.split("><");
+		String[] s13 = out.toString().split("><");
 		String ifString = MonthsName + "Result";
 		String TS = "";
 		String vs = "";
@@ -114,7 +114,6 @@ public class HttpConnSoap {
 					l = ifString.length() + 1;
 					vs = TS.substring(j + l, k - 2);
 					Values.add(vs);
-					System.out.println("ÍË³ö" + vs);
 					getValueBoolean = false;
 					return Values;
 				}

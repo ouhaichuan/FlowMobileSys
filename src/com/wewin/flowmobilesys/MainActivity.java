@@ -214,7 +214,7 @@ public class MainActivity extends Activity {
 			input2 = findViewById(R.id.input2);
 			input2.setOnClickListener(new inputOnClick());
 
-			showBottom(true);// 初始化时，隐藏
+			showBottom(true);// 初始化时隐藏
 		}
 
 		public class inputOnClick implements OnClickListener {

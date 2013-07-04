@@ -159,8 +159,8 @@ public class LoginActivity extends Activity implements OnClickListener {
 			@Override
 			public void run() {
 				// 验证数据
-				List<String> list = new WebServiceUtil().doLogin(accout.getText()
-						.toString(), password.getText().toString());
+				List<String> list = new WebServiceUtil().doLogin(accout
+						.getText().toString(), password.getText().toString());
 				// 设置用户ID保存全局变量
 				((GlobalApplication) getApplication()).setUserId(list.get(0));
 				// 设置用户角色名称保存全局变量

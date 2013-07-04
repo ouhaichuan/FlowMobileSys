@@ -3,7 +3,6 @@ package com.wewin.flowmobilesys.car;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import com.wewin.flowmobilesys.LoginActivity;
 import com.wewin.flowmobilesys.R;
 import android.app.Activity;
