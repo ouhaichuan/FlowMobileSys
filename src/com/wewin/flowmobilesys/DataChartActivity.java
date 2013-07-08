@@ -7,7 +7,7 @@ import org.achartengine.model.CategorySeries;
 import org.achartengine.model.SeriesSelection;
 import org.achartengine.renderer.DefaultRenderer;
 import org.achartengine.renderer.SimpleSeriesRenderer;
-import com.wewin.flowmobilesys.util.WebServiceUtil;
+import com.wewin.flowmobilesys.service.WebServiceUtil;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;

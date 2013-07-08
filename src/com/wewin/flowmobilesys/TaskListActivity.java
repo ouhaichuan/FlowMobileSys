@@ -6,7 +6,7 @@ import java.util.List;
 import com.wewin.flowmobilesys.GlobalApplication;
 import com.wewin.flowmobilesys.adapter.ListAdapter;
 import com.wewin.flowmobilesys.menu.TabMenu;
-import com.wewin.flowmobilesys.util.WebServiceUtil;
+import com.wewin.flowmobilesys.service.WebServiceUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;

@@ -2,11 +2,10 @@ package com.wewin.flowmobilesys;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.wewin.flowmobilesys.adapter.OnGestureAndTouchAdapter;
 import com.wewin.flowmobilesys.menu.ActionItem;
 import com.wewin.flowmobilesys.menu.TitlePopup;
-import com.wewin.flowmobilesys.util.WebServiceUtil;
+import com.wewin.flowmobilesys.service.WebServiceUtil;
 import com.wewin.flowmobilesys.util.FileUtil;
 import android.app.Activity;
 import android.app.AlertDialog;

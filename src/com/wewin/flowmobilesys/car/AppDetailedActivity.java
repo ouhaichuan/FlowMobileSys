@@ -9,7 +9,7 @@ import com.wewin.flowmobilesys.R;
 import com.wewin.flowmobilesys.adapter.OptionsAdapter;
 import com.wewin.flowmobilesys.menu.ActionItem;
 import com.wewin.flowmobilesys.menu.TitlePopup;
-import com.wewin.flowmobilesys.util.WebServiceUtil;
+import com.wewin.flowmobilesys.service.WebServiceUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -550,7 +550,7 @@ public class AppDetailedActivity extends Activity implements Callback {
 				break;
 			}
 		}
-	};
+	}
 
 	/**
 	 * 处理日期控件的Handler

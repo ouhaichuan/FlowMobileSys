@@ -5,7 +5,7 @@ import java.util.List;
 import com.wewin.flowmobilesys.DialogFactory;
 import com.wewin.flowmobilesys.GlobalApplication;
 import com.wewin.flowmobilesys.R;
-import com.wewin.flowmobilesys.util.WebServiceUtil;
+import com.wewin.flowmobilesys.service.WebServiceUtil;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;

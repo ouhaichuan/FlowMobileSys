@@ -1,7 +1,7 @@
 package com.wewin.flowmobilesys;
 
 import com.wewin.flowmobilesys.R;
-import com.wewin.flowmobilesys.util.WebServiceUtil;
+import com.wewin.flowmobilesys.service.WebServiceUtil;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;

@@ -1,10 +1,10 @@
-package com.wewin.flowmobilesys.util;
+package com.wewin.flowmobilesys.service;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import com.wewin.flowmobilesys.http.HttpConnSoap;
+import com.wewin.flowmobilesys.service.HttpConnSoap;
 
 /**
  * 数据中间层，访问Soap，并处理获得的数据
