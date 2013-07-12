@@ -14,7 +14,7 @@
 
     <application
         android:name=".GlobalApplication"
-        android:icon="@drawable/icons"
+        android:icon="@drawable/lanchers_icon"
         android:label="@string/app_name" >
         <activity
             android:name=".WelcomeActivity"
