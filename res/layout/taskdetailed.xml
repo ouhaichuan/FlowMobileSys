@@ -62,7 +62,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/tasktype_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_tasktype"
@@ -74,7 +74,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -91,7 +91,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/response_person_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_response_person"
@@ -103,7 +103,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -120,7 +120,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/taskid_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_taskid"
@@ -132,7 +132,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#FF0000"
-                        android:textSize="15.0sp"
+                        android:textSize="17.0sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
@@ -150,7 +150,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_creator_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_creator"
@@ -162,7 +162,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -179,7 +179,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_yanshou_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_yanshou"
@@ -191,7 +191,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -208,7 +208,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_name_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_name"
@@ -220,7 +220,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -237,7 +237,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_startdate_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_startdate"
@@ -249,7 +249,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -266,7 +266,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_enddate_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_enddate"
@@ -278,7 +278,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -295,7 +295,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_mj_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_mj"
@@ -307,7 +307,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -324,7 +324,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_status_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_status"
@@ -336,7 +336,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -353,7 +353,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_fenguan_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_fenguan"
@@ -365,7 +365,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -382,7 +382,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_writedate_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_writedate"
@@ -394,7 +394,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -411,7 +411,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_des_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_des"
@@ -423,7 +423,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -440,7 +440,7 @@
                         android:paddingLeft="13.0dip"
                         android:text="@string/task_counts_str"
                         android:textColor="@android:color/black"
-                        android:textSize="13.0sp" />
+                        android:textSize="15.0sp" />
 
                     <TextView
                         android:id="@+id/txt_task_counts"
@@ -452,7 +452,7 @@
                         android:background="@android:color/white"
                         android:paddingLeft="10.0dip"
                         android:textColor="#ff545454"
-                        android:textSize="15.0sp" />
+                        android:textSize="17.0sp" />
 
                     <Button
                         android:id="@+id/child_btn"

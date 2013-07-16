@@ -93,9 +93,9 @@ public class ListAdapter extends BaseAdapter {
 		holder.txt_status.setText(map.get("status"));
 		holder.txt_counts.setText(map.get("counts"));
 
-		if (map.get("importance").equals("1")) {
+		if (map.get("importance").equals("特别重要")) {
 			convertView.setBackgroundColor(Color.RED);
-		} else if (map.get("importance").equals("2")) {
+		} else if (map.get("importance").equals("重要")) {
 			convertView.setBackgroundColor(Color.DKGRAY);
 		}
 		return convertView;

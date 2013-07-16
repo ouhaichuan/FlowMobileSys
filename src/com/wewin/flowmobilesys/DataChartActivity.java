@@ -94,8 +94,9 @@ public class DataChartActivity extends Activity {
 		mRenderer.setZoomButtonsVisible(true);
 		mRenderer.setStartAngle(180);
 		mRenderer.setDisplayValues(true);
-		mRenderer.setLegendTextSize(30.0f);
-		mRenderer.setLabelsTextSize(35.0f);
+		mRenderer.setLegendTextSize(40.0f);
+		mRenderer.setLabelsColor(Color.WHITE);
+		mRenderer.setLabelsTextSize(40.0f);
 
 		setViewData();
 	}
