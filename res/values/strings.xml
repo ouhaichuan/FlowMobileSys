@@ -60,5 +60,6 @@
     <string name="exit_str">退出</string>
     <string name="tasksys_str">项目管理平台</string>
     <string name="carsys_str">车辆申请平台</string>
+    <string name="search_str">搜索</string>
 
 </resources>

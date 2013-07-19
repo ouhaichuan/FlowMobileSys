@@ -95,8 +95,6 @@ public class ListAdapter extends BaseAdapter {
 
 		if (map.get("importance").equals("特别重要")) {
 			convertView.setBackgroundColor(Color.RED);
-		} else if (map.get("importance").equals("重要")) {
-			convertView.setBackgroundColor(Color.DKGRAY);
 		}
 		return convertView;
 	}

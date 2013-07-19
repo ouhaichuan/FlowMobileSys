@@ -64,6 +64,7 @@
                 android:layout_marginRight="5.0dip"
                 android:layout_toLeftOf="@+id/more_text"
                 android:clickable="false"
+                android:contentDescription="@string/app_name"
                 android:src="@drawable/login_more_up" />
 
             <TextView

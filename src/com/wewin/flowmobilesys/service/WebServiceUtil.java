@@ -158,9 +158,12 @@ public class WebServiceUtil {
 	/**
 	 * 获取关注任务的信息
 	 * 
+	 * @param search_str
+	 * 
 	 * @return
 	 */
-	public List<HashMap<String, String>> selectWatchMissionInfo(String userId) {
+	public List<HashMap<String, String>> selectWatchMissionInfo(String userId,
+			String search_str) {
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
 		arrayList.clear();
@@ -170,6 +173,9 @@ public class WebServiceUtil {
 		// 传递用户编号
 		arrayList.add("id");
 		brrayList.add(userId);
+		// 传递查询字符串
+		arrayList.add("search_str");
+		brrayList.add(search_str);
 
 		crrayList = Soap.GetWebService("selectWatchMissionInfo", arrayList,
 				brrayList);
@@ -284,9 +290,12 @@ public class WebServiceUtil {
 	/**
 	 * 获取我的任务的信息
 	 * 
+	 * @param search_str
+	 * 
 	 * @return
 	 */
-	public List<HashMap<String, String>> selectMyMissionInfo(String userId) {
+	public List<HashMap<String, String>> selectMyMissionInfo(String userId,
+			String search_str) {
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
 		arrayList.clear();
@@ -296,6 +305,9 @@ public class WebServiceUtil {
 		// 传递用户编号
 		arrayList.add("id");
 		brrayList.add(userId);
+		// 传输检索字符串
+		arrayList.add("search_str");
+		brrayList.add(search_str);
 
 		crrayList = Soap.GetWebService("selectMyMissionInfo", arrayList,
 				brrayList);
@@ -335,10 +347,12 @@ public class WebServiceUtil {
 	/**
 	 * 获取可见任务的信息
 	 * 
+	 * @param search_str
+	 * 
 	 * @return
 	 */
 	public List<HashMap<String, String>> selectCanSeeMissionInfo(String userId,
-			String rolename, String department_name) {
+			String rolename, String department_name, String search_str) {
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
 		arrayList.clear();
@@ -354,6 +368,9 @@ public class WebServiceUtil {
 		// 传递部门名称
 		arrayList.add("department_name");
 		brrayList.add(department_name);
+		// 传递检索字符串
+		arrayList.add("search_str");
+		brrayList.add(search_str);
 
 		crrayList = Soap.GetWebService("selectCanSeeMissionInfo", arrayList,
 				brrayList);
@@ -648,10 +665,11 @@ public class WebServiceUtil {
 	 * 
 	 * @date 2013-6-26
 	 * @param intent_missionId
+	 * @param search_str
 	 * @return
 	 */
 	public List<HashMap<String, String>> selectChildMissionInfo(
-			String intent_missionId) {
+			String intent_missionId, String search_str) {
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
 		arrayList.clear();
@@ -659,6 +677,8 @@ public class WebServiceUtil {
 		crrayList.clear();
 		arrayList.add("intent_missionId");
 		brrayList.add(intent_missionId);
+		arrayList.add("search_str");
+		brrayList.add(search_str);
 
 		crrayList = Soap.GetWebService("selectChildMissionInfo", arrayList,
 				brrayList);
@@ -700,10 +720,12 @@ public class WebServiceUtil {
 	 * @date 2013-6-26
 	 * @param userId
 	 * @param datachart_index
+	 * @param search_str
 	 * @return
 	 */
 	public List<HashMap<String, String>> selectChartMissionInfo(String userId,
-			String datachart_index, String rolename, String department_name) {
+			String datachart_index, String rolename, String department_name,
+			String search_str) {
 		List<HashMap<String, String>> list = new ArrayList<HashMap<String, String>>();
 
 		arrayList.clear();
@@ -718,6 +740,8 @@ public class WebServiceUtil {
 		brrayList.add(rolename);
 		arrayList.add("department_name");
 		brrayList.add(department_name);
+		arrayList.add("search_str");
+		brrayList.add(search_str);
 
 		crrayList = Soap.GetWebService("selectChartMissionInfo", arrayList,
 				brrayList);

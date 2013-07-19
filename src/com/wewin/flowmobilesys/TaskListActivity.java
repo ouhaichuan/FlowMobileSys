@@ -15,10 +15,14 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -44,6 +48,7 @@ public class TaskListActivity extends Activity {
 	private String datachart_index = "";
 	private String task_status = "", zrrName = "", ysrName = "";
 	private List<HashMap<String, String>> list;
+	private EditText search_txt;
 	TabMenu.MenuBodyAdapter bodyAdapter;
 	TabMenu tabMenu;
 	private String auditorcompleteFlag = "";
@@ -56,12 +61,22 @@ public class TaskListActivity extends Activity {
 	}
 
 	private void initView() {
+		// 启动activity时不自动弹出软键盘
+		getWindow().setSoftInputMode(
+				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
 		listView = (ListView) findViewById(R.id.listView);
 		listView.setOnItemClickListener(new MyItemClickListhener());// 注册点击事件
 
 		taskTitle = (TextView) findViewById(R.id.taskTitle);
 		dbUtil = new WebServiceUtil();
 		handler = new Handler();
+
+		/*
+		 * 搜索框初始化，并绑定textchange监听事件
+		 */
+		search_txt = (EditText) findViewById(R.id.search_txt);
+		search_txt.addTextChangedListener(new SearchTextChangeAdapter());
 
 		// 得到全局用户ID
 		userId = ((GlobalApplication) getApplication()).getUserId();
@@ -124,21 +139,21 @@ public class TaskListActivity extends Activity {
 			public void run() {
 				switch (taskFlag) {
 				case 1:// 关注任务
-					list = dbUtil.selectWatchMissionInfo(userId);
+					list = dbUtil.selectWatchMissionInfo(userId, "");
 					break;
 				case 2:// 我的任务
-					list = dbUtil.selectMyMissionInfo(userId);
+					list = dbUtil.selectMyMissionInfo(userId, "");
 					break;
 				case 3:// 可见任务
 					list = dbUtil.selectCanSeeMissionInfo(userId, rolename,
-							department_name);
+							department_name, "");
 					break;
 				case 4:// 子任务
-					list = dbUtil.selectChildMissionInfo(intent_missionId);
+					list = dbUtil.selectChildMissionInfo(intent_missionId, "");
 					break;
 				case 5:// DataChart列表
 					list = dbUtil.selectChartMissionInfo(userId,
-							datachart_index, rolename, department_name);
+							datachart_index, rolename, department_name, "");
 					break;
 				default:
 					list = new ArrayList<HashMap<String, String>>();
@@ -391,7 +406,7 @@ public class TaskListActivity extends Activity {
 			public void run() {
 				dbUtil.doAuditTaskReq(missionId, userId);// 审批任务webservice
 
-				list = dbUtil.selectMyMissionInfo(userId);// 重新读取我的任务
+				list = dbUtil.selectMyMissionInfo(userId, "");// 重新读取我的任务
 				// 更新界面
 				updateDialog();
 				// 销毁窗口
@@ -441,7 +456,7 @@ public class TaskListActivity extends Activity {
 			@Override
 			public void run() {
 				dbUtil.doCompleteTaskReq(missionId, userId);// 完成任务webservice
-				list = dbUtil.selectMyMissionInfo(userId);// 重新读取我的任务
+				list = dbUtil.selectMyMissionInfo(userId, "");// 重新读取我的任务
 				// 更新界面
 				updateDialog();
 				// 销毁窗口
@@ -551,7 +566,7 @@ public class TaskListActivity extends Activity {
 			@Override
 			public void run() {
 				dbUtil.doAcessCancelReq(userId, missionId);// 取消关注webservice
-				list = dbUtil.selectWatchMissionInfo(userId);// 重新读取关注任务
+				list = dbUtil.selectWatchMissionInfo(userId, "");// 重新读取关注任务
 				// 更新界面
 				updateDialog();
 				// 销毁窗口
@@ -602,12 +617,67 @@ public class TaskListActivity extends Activity {
 			public void run() {
 				dbUtil.doAcessOkReq(userId, missionId);// 关注webservice
 				list = dbUtil.selectCanSeeMissionInfo(userId, rolename,
-						department_name);// 重新读取可见任务
+						department_name, "");// 重新读取可见任务
 				// 更新界面
 				updateDialog();
 				// 销毁窗口
 				mDialog.dismiss();
 			}
 		}).start();
+	}
+
+	/**
+	 * search_txt内容变化事件
+	 * 
+	 * @author HCOU
+	 * @date 2013-7-19
+	 */
+	class SearchTextChangeAdapter implements TextWatcher {
+		@Override
+		public void afterTextChanged(Editable s) {
+			final String search_str = search_txt.getText().toString();// 检索字符串
+			new Thread(new Runnable() {
+				@Override
+				public void run() {
+					switch (taskFlag) {
+					case 1:// 关注任务
+						list = dbUtil
+								.selectWatchMissionInfo(userId, search_str);
+						break;
+					case 2:// 我的任务
+						list = dbUtil.selectMyMissionInfo(userId, search_str);
+						break;
+					case 3:// 可见任务
+						list = dbUtil.selectCanSeeMissionInfo(userId, rolename,
+								department_name, search_str);
+						break;
+					case 4:// 子任务
+						list = dbUtil.selectChildMissionInfo(intent_missionId,
+								search_str);
+						break;
+					case 5:// DataChart列表
+						list = dbUtil.selectChartMissionInfo(userId,
+								datachart_index, rolename, department_name,
+								search_str);
+						break;
+					default:
+						list = new ArrayList<HashMap<String, String>>();
+						break;
+					}
+					// 更新界面
+					updateDialog();
+				}
+			}).start();
+		}
+
+		@Override
+		public void onTextChanged(CharSequence s, int start, int before,
+				int count) {
+		}
+
+		@Override
+		public void beforeTextChanged(CharSequence s, int start, int count,
+				int after) {
+		}
 	}
 }
