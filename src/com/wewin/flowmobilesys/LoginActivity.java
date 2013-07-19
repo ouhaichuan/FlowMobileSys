@@ -11,6 +11,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -45,6 +46,20 @@ public class LoginActivity extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.loginpage);
 		initView();
+	}
+
+	/**
+	 * 对网络连接状态进行判断
+	 * 
+	 * @date 2013-7-19
+	 * @return true, 可用； false， 不可用
+	 */
+	public boolean isOpenNetwork() {
+		ConnectivityManager connManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		if (null != connManager.getActiveNetworkInfo()) {
+			return connManager.getActiveNetworkInfo().isAvailable();
+		}
+		return false;
 	}
 
 	public void initView() {
@@ -134,17 +149,22 @@ public class LoginActivity extends Activity implements OnClickListener {
 	 */
 	@Override
 	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.regist:
-			goForgot_PasswordActivity();// 跳转找回密码页面
-			break;
-		case R.id.login:
-			if (checkNullInPutValue()) {// 检查是否输入用户名、密码
-				doLoginRequest();// 发送登录请求
+		if (!isOpenNetwork()) {// 判断网络状态
+			Toast.makeText(getApplicationContext(), "网络问题", Toast.LENGTH_SHORT)
+					.show();
+		} else {
+			switch (v.getId()) {
+			case R.id.regist:
+				goForgot_PasswordActivity();// 跳转找回密码页面
+				break;
+			case R.id.login:
+				if (checkNullInPutValue()) {// 检查是否输入用户名、密码
+					doLoginRequest();// 发送登录请求
+					break;
+				}
+			default:
 				break;
 			}
-		default:
-			break;
 		}
 	}
 
