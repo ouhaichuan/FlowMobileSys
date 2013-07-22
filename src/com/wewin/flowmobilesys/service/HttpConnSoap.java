@@ -28,7 +28,6 @@ public class HttpConnSoap {
 		// Õ‚Õ¯µÿ÷∑
 		// String ServerUrl = "http://10.0.2.2:2364/DbService.asmx";
 
-		// String soapAction="http://tempuri.org/LongUserId1";
 		String soapAction = "http://tempuri.org/" + methodName;
 		// String data = "";
 		String soap = "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
