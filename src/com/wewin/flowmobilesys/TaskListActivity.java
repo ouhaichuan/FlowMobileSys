@@ -7,12 +7,14 @@ import com.wewin.flowmobilesys.GlobalApplication;
 import com.wewin.flowmobilesys.adapter.ListAdapter;
 import com.wewin.flowmobilesys.menu.TabMenu;
 import com.wewin.flowmobilesys.service.WebServiceUtil;
+import com.wewin.flowmobilesys.widget.CustomListView;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
@@ -23,7 +25,6 @@ import android.view.WindowManager;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.TextView;
 
 /**
@@ -33,7 +34,7 @@ import android.widget.TextView;
  * @date 2013-6-5
  */
 public class TaskListActivity extends Activity {
-	private ListView listView;
+	private CustomListView listView;
 	private TextView taskTitle;
 	private WebServiceUtil dbUtil;
 	private Dialog mDialog;
@@ -65,8 +66,21 @@ public class TaskListActivity extends Activity {
 		getWindow().setSoftInputMode(
 				WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-		listView = (ListView) findViewById(R.id.listView);
+		listView = (CustomListView) findViewById(R.id.listView);
 		listView.setOnItemClickListener(new MyItemClickListhener());// 注册点击事件
+		listView.setonRefreshListener(new CustomListView.OnRefreshListener() {
+			@Override
+			public void onRefresh() {// 下拉刷新
+				new ReFreshDataTask().execute();
+			}
+		});
+
+		listView.setonLoadListener(new CustomListView.OnLoadListener() {
+			@Override
+			public void onLoad() {// 加载更多
+				new LoadMoreDataTask().execute();
+			}
+		});
 
 		taskTitle = (TextView) findViewById(R.id.taskTitle);
 		dbUtil = new WebServiceUtil();
@@ -137,30 +151,7 @@ public class TaskListActivity extends Activity {
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
-				switch (taskFlag) {
-				case 1:// 关注任务
-					list = dbUtil.selectWatchMissionInfo(userId, "");
-					break;
-				case 2:// 我的任务
-					list = dbUtil.selectMyMissionInfo(userId, "");
-					break;
-				case 3:// 可见任务
-					list = dbUtil.selectCanSeeMissionInfo(userId, rolename,
-							department_name, "");
-					break;
-				case 4:// 子任务
-					list = dbUtil.selectChildMissionInfo(intent_missionId, "");
-					break;
-				case 5:// DataChart列表
-					list = dbUtil.selectChartMissionInfo(userId,
-							datachart_index, rolename, department_name, "");
-					break;
-				default:
-					list = new ArrayList<HashMap<String, String>>();
-					break;
-				}
-				// 更新界面
-				updateDialog();
+				LoadData4View("");
 				// 销毁窗口
 				mDialog.dismiss();
 			}
@@ -639,33 +630,7 @@ public class TaskListActivity extends Activity {
 			new Thread(new Runnable() {
 				@Override
 				public void run() {
-					switch (taskFlag) {
-					case 1:// 关注任务
-						list = dbUtil
-								.selectWatchMissionInfo(userId, search_str);
-						break;
-					case 2:// 我的任务
-						list = dbUtil.selectMyMissionInfo(userId, search_str);
-						break;
-					case 3:// 可见任务
-						list = dbUtil.selectCanSeeMissionInfo(userId, rolename,
-								department_name, search_str);
-						break;
-					case 4:// 子任务
-						list = dbUtil.selectChildMissionInfo(intent_missionId,
-								search_str);
-						break;
-					case 5:// DataChart列表
-						list = dbUtil.selectChartMissionInfo(userId,
-								datachart_index, rolename, department_name,
-								search_str);
-						break;
-					default:
-						list = new ArrayList<HashMap<String, String>>();
-						break;
-					}
-					// 更新界面
-					updateDialog();
+					LoadData4View(search_str);
 				}
 			}).start();
 		}
@@ -678,6 +643,79 @@ public class TaskListActivity extends Activity {
 		@Override
 		public void beforeTextChanged(CharSequence s, int start, int count,
 				int after) {
+		}
+	}
+
+	public void LoadData4View(final String search_str) {
+		switch (taskFlag) {
+		case 1:// 关注任务
+			list = dbUtil.selectWatchMissionInfo(userId, search_str);
+			break;
+		case 2:// 我的任务
+			list = dbUtil.selectMyMissionInfo(userId, search_str);
+			break;
+		case 3:// 可见任务
+			list = dbUtil.selectCanSeeMissionInfo(userId, rolename,
+					department_name, search_str);
+			break;
+		case 4:// 子任务
+			list = dbUtil.selectChildMissionInfo(intent_missionId, search_str);
+			break;
+		case 5:// DataChart列表
+			list = dbUtil.selectChartMissionInfo(userId, datachart_index,
+					rolename, department_name, search_str);
+			break;
+		default:
+			list = new ArrayList<HashMap<String, String>>();
+			break;
+		}
+		// 更新界面
+		updateDialog();
+	}
+
+	/**
+	 * 加载更多
+	 * 
+	 * @author HCOU
+	 * @date 2013-7-22
+	 */
+	private class LoadMoreDataTask extends AsyncTask<Void, Void, Boolean> {
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			LoadData4View("");// 加载数据
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+			}
+			return true;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			listView.onLoadComplete();// 完成加载更多
+		}
+	}
+
+	/**
+	 * 下拉刷新
+	 * 
+	 * @author HCOU
+	 * @date 2013-7-22
+	 */
+	private class ReFreshDataTask extends AsyncTask<Void, Void, Boolean> {
+		@Override
+		protected Boolean doInBackground(Void... params) {
+			LoadData4View("");// 加载数据
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+			}
+			return true;
+		}
+
+		@Override
+		protected void onPostExecute(Boolean result) {
+			listView.onRefreshComplete();// 完成刷新
 		}
 	}
 }

@@ -113,8 +113,10 @@
             android:layout_marginRight="1.0px"
             android:background="@color/black" />
 
-        <ListView
+        <com.wewin.flowmobilesys.widget.CustomListView
             android:id="@+id/listView"
+            android:scrollbars="none"
+            android:scrollingCache="false"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
     </LinearLayout>
