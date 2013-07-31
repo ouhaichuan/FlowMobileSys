@@ -150,7 +150,7 @@ public class LoginActivity extends Activity implements OnClickListener {
 	@Override
 	public void onClick(View v) {
 		if (!isOpenNetwork()) {// 判断网络状态
-			Toast.makeText(getApplicationContext(), "网络问题", Toast.LENGTH_SHORT)
+			Toast.makeText(getApplicationContext(), "网络异常", Toast.LENGTH_SHORT)
 					.show();
 		} else {
 			switch (v.getId()) {
@@ -181,18 +181,30 @@ public class LoginActivity extends Activity implements OnClickListener {
 				// 验证数据
 				List<String> list = new WebServiceUtil().doLogin(accout
 						.getText().toString(), password.getText().toString());
-				// 设置用户ID保存全局变量
-				((GlobalApplication) getApplication()).setUserId(list.get(0));
-				// 设置用户角色名称保存全局变量
-				((GlobalApplication) getApplication()).setRolename(list.get(2));
-				// 设置用户部门名称保存全局变量
-				((GlobalApplication) getApplication()).setDepartment_name(list
-						.get(3));
-				// 设置用户名称
-				((GlobalApplication) getApplication()).setUserName(list.get(4));
-				result = list.get(1);// 验证结果
-				// 更新界面，并记住用户、密码
-				updateDialog();
+				if (list.size() > 0) {
+					// 设置用户ID保存全局变量
+					((GlobalApplication) getApplication()).setUserId(list
+							.get(0));
+					// 设置用户角色名称保存全局变量
+					((GlobalApplication) getApplication()).setRolename(list
+							.get(2));
+					// 设置用户部门名称保存全局变量
+					((GlobalApplication) getApplication())
+							.setDepartment_name(list.get(3));
+					// 设置用户名称
+					((GlobalApplication) getApplication()).setUserName(list
+							.get(4));
+					result = list.get(1);// 验证结果
+					// 更新界面，并记住用户、密码
+					updateDialog();
+				} else {
+					mHandler.post(new Runnable() {
+						public void run() {
+							Toast.makeText(getApplicationContext(), "网络异常",
+									Toast.LENGTH_SHORT).show();
+						}
+					});
+				}
 				// 销毁窗口
 				mDialog.dismiss();
 			}
