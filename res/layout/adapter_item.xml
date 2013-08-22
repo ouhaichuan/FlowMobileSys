@@ -24,7 +24,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/txt_zrrName"
+            android:id="@+id/txt_createUserName"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -48,7 +48,7 @@
         </TextView>
 
         <TextView
-            android:id="@+id/txt_createUserName"
+            android:id="@+id/txt_zrrName"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"

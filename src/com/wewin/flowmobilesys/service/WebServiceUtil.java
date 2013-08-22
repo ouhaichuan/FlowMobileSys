@@ -178,7 +178,7 @@ public class WebServiceUtil {
 
 		crrayList = Soap.GetWebService("selectWatchMissionInfo", arrayList,
 				brrayList);
-		for (int j = 0; j < crrayList.size(); j += 8) {
+		for (int j = 0; j < crrayList.size(); j += 9) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
 			hashMap.put("missionId", crrayList.get(j));
 			hashMap.put("createUserName", crrayList.get(j + 1));
@@ -203,6 +203,7 @@ public class WebServiceUtil {
 
 			hashMap.put("importance", crrayList.get(j + 6));// 重要性
 			hashMap.put("counts", crrayList.get(j + 7));
+			hashMap.put("zrrName", crrayList.get(j + 8));// 责任人
 			list.add(hashMap);
 		}
 		return list;
@@ -374,7 +375,7 @@ public class WebServiceUtil {
 		crrayList = Soap.GetWebService("selectCanSeeMissionInfo", arrayList,
 				brrayList);
 
-		for (int j = 0; j < crrayList.size(); j += 8) {
+		for (int j = 0; j < crrayList.size(); j += 9) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
 			hashMap.put("missionId", crrayList.get(j));
 			hashMap.put("createUserName", crrayList.get(j + 1));
@@ -403,7 +404,7 @@ public class WebServiceUtil {
 				hashMap.put("counts", "已关注");
 			else
 				hashMap.put("counts", "未关注");
-
+			hashMap.put("zrrName", crrayList.get(j + 8));// 责任人
 			list.add(hashMap);
 		}
 		return list;
@@ -707,6 +708,7 @@ public class WebServiceUtil {
 
 			hashMap.put("importance", crrayList.get(j + 6));// 重要性
 			hashMap.put("counts", crrayList.get(j + 7));
+			hashMap.put("zrrName", crrayList.get(j + 8));// 责任人
 
 			list.add(hashMap);
 		}
@@ -745,7 +747,7 @@ public class WebServiceUtil {
 		crrayList = Soap.GetWebService("selectChartMissionInfo", arrayList,
 				brrayList);
 
-		for (int j = 0; j < crrayList.size(); j += 8) {
+		for (int j = 0; j < crrayList.size(); j += 9) {
 			HashMap<String, String> hashMap = new HashMap<String, String>();
 			hashMap.put("missionId", crrayList.get(j));
 			hashMap.put("createUserName", crrayList.get(j + 1));
@@ -770,6 +772,7 @@ public class WebServiceUtil {
 
 			hashMap.put("importance", crrayList.get(j + 6));// 重要性
 			hashMap.put("counts", crrayList.get(j + 7));
+			hashMap.put("zrrName", crrayList.get(j + 8));// 责任人
 
 			list.add(hashMap);
 		}

@@ -315,7 +315,7 @@ public final class R {
         public static final int txt_carnum=0x7f070018;
         public static final int txt_carstatus=0x7f07001a;
         public static final int txt_counts=0x7f070012;
-        public static final int txt_createUserName=0x7f07000d;
+        public static final int txt_createUserName=0x7f07000b;
         public static final int txt_destination=0x7f070019;
         public static final int txt_endTime=0x7f070010;
         public static final int txt_endtime=0x7f070022;
@@ -344,7 +344,7 @@ public final class R {
         public static final int txt_tasktype=0x7f070055;
         public static final int txt_username=0x7f070016;
         public static final int txt_ysrName=0x7f07000c;
-        public static final int txt_zrrName=0x7f07000b;
+        public static final int txt_zrrName=0x7f07000d;
         public static final int userid=0x7f070033;
     }
     public static final class layout {
